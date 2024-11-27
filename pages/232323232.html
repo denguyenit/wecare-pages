@@ -1,0 +1,269 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Preview Layout</title>
+             <!-- Thêm Recharts CDN -->
+            <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+            <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+            <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.22.5/antd.min.css" />
+            <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    min-height: 100vh;
+                }
+                #container {
+                    min-height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    width: 100%;
+                    background: white;
+                }
+                .content-wrapper {
+                    flex: 1;
+                    position: relative;
+                    min-height: 500px;
+                    padding: 1rem;
+                }
+                .component-wrapper {
+                    position: absolute;
+                    background: white;
+                    border-radius: 0.25rem;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                    border: 1px solid #e5e7eb;
+                    transform: translate(0, 0);
+                }
+                     .heading-wrapper {
+                    position: absolute;
+                    background: white;
+                    transform: translate(0, 0);
+                }
+                .header-wrapper {
+                    position: sticky;
+                    top: 0;
+                    width: 100%;
+                    z-index: 100;
+                }
+                .footer-wrapper {
+                    width: 100%;
+                    margin-top: auto;
+                }
+                     /* Thêm CSS cho Ant Design Table */
+        .ant-table {
+            font-size: 14px;
+        }
+        .ant-table-thead > tr > th {
+            background: #fafafa;
+            color: rgba(0, 0, 0, 0.85);
+            font-weight: 500;
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .ant-table-tbody > tr > td {
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .ant-table-tbody > tr:hover > td {
+            background: #fafafa;
+        }
+        .ant-table-cell {
+            min-width: 50px;
+        }
+           .recharts-wrapper {
+                    position: relative;
+                    cursor: default;
+                    width: 100%;
+                    height: 100%;
+                }
+                .recharts-surface {
+                    overflow: visible;
+                }
+                .recharts-legend-wrapper {
+                    position: absolute;
+                    width: 100%;
+                    height: auto;
+                    bottom: 5px;
+                    left: 0;
+                    display: flex;
+                    justify-content: center;
+                }
+                .recharts-default-legend {
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                }
+                .recharts-legend-item {
+                    display: inline-block;
+                    margin: 0 10px;
+                }
+            </style>
+        </head>
+        <body>
+            <div id="container">
+                
+                
+                <div class="content-wrapper">
+                    
+                            <div class="component-wrapper" style="
+                                left: 360px;
+                                top: 280px;
+                                width: 600px;
+                                position: absolute;
+                                z-index: 1;
+                            ">
+                                
+                    <div class="ant-table-wrapper" style="width: 600px">
+                        <div class="ant-table">
+                            <div class="ant-table-container">
+                                <div class="ant-table-content">
+                                    <table style="table-layout: auto;">
+                                        <thead class="ant-table-thead">
+                                            <tr>
+                                                
+                                                    <th class="ant-table-cell">Mã KH</th>
+                                                
+                                                    <th class="ant-table-cell">Check in</th>
+                                                
+                                                    <th class="ant-table-cell">Code-Auto</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody class="ant-table-tbody">
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">KH-1392</td>
+                                                    
+                                                        <td class="ant-table-cell">14.50277756, 109.08310845</td>
+                                                    
+                                                        <td class="ant-table-cell">CNKH-93792</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">KH-9424</td>
+                                                    
+                                                        <td class="ant-table-cell">14.454607, 109.0282681</td>
+                                                    
+                                                        <td class="ant-table-cell">CNKH-93831</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">KH-8253</td>
+                                                    
+                                                        <td class="ant-table-cell">14.454607, 109.0282681</td>
+                                                    
+                                                        <td class="ant-table-cell">CNKH-93844</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">KH-8087</td>
+                                                    
+                                                        <td class="ant-table-cell">14.04641655, 107.97032498</td>
+                                                    
+                                                        <td class="ant-table-cell">CNKH-93882</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">KH-10701</td>
+                                                    
+                                                        <td class="ant-table-cell">12.25319326, 109.19072161</td>
+                                                    
+                                                        <td class="ant-table-cell">CNKH-93907</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">KH-2768</td>
+                                                    
+                                                        <td class="ant-table-cell">14.4854156, 109.09076</td>
+                                                    
+                                                        <td class="ant-table-cell">CNKH-93912</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">KH-11207</td>
+                                                    
+                                                        <td class="ant-table-cell">12.69017366, 107.96505924</td>
+                                                    
+                                                        <td class="ant-table-cell">CNKH-93923</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">KH-1020</td>
+                                                    
+                                                        <td class="ant-table-cell">14.4854156, 109.09076</td>
+                                                    
+                                                        <td class="ant-table-cell">CNKH-93928</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">KH-11208</td>
+                                                    
+                                                        <td class="ant-table-cell">12.68897956, 107.96656965</td>
+                                                    
+                                                        <td class="ant-table-cell">CNKH-93939</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">KH-11210</td>
+                                                    
+                                                        <td class="ant-table-cell">12.6874938, 107.96848489</td>
+                                                    
+                                                        <td class="ant-table-cell">CNKH-93945</td>
+                                                    
+                                                </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                            </div>
+                        
+                            <div class="component-wrapper" style="
+                                left: 360px;
+                                top: 180px;
+                                
+                                position: absolute;
+                                z-index: 1;
+                            ">
+                                <button 
+                class="ant-btn ant-btn-primary" 
+                style="width: autopx"
+            >
+                Button
+            </button>
+                            </div>
+                        
+                </div>
+
+                
+            </div>
+        </body>
+        </html>
