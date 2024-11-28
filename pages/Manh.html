@@ -1,0 +1,711 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Preview Layout</title>
+             <!-- Thêm Recharts CDN -->
+            <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+            <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+            <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.22.5/antd.min.css" />
+            <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    min-height: 100vh;
+                }
+                #container {
+                    min-height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    width: 100%;
+                    background: white;
+                }
+                .content-wrapper {
+                    flex: 1;
+                    position: relative;
+                    min-height: 500px;
+                    padding: 1rem;
+                }
+                .component-wrapper {
+                    position: absolute;
+                    background: white;
+                    border-radius: 0.25rem;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                    border: 1px solid #e5e7eb;
+                    transform: translate(0, 0);
+                }
+                     .heading-wrapper {
+                    position: absolute;
+                    background: white;
+                    transform: translate(0, 0);
+                }
+                .header-wrapper {
+                    position: sticky;
+                    top: 0;
+                    width: 100%;
+                    z-index: 100;
+                }
+                .footer-wrapper {
+                    width: 100%;
+                    margin-top: auto;
+                }
+                     /* Thêm CSS cho Ant Design Table */
+        .ant-table {
+            font-size: 14px;
+        }
+        .ant-table-thead > tr > th {
+            background: #fafafa;
+            color: rgba(0, 0, 0, 0.85);
+            font-weight: 500;
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .ant-table-tbody > tr > td {
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .ant-table-tbody > tr:hover > td {
+            background: #fafafa;
+        }
+        .ant-table-cell {
+            min-width: 50px;
+        }
+           .recharts-wrapper {
+                    position: relative;
+                    cursor: default;
+                    width: 100%;
+                    height: 100%;
+                }
+                .recharts-surface {
+                    overflow: visible;
+                }
+                .recharts-legend-wrapper {
+                    position: absolute;
+                    width: 100%;
+                    height: auto;
+                    bottom: 5px;
+                    left: 0;
+                    display: flex;
+                    justify-content: center;
+                }
+                .recharts-default-legend {
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                }
+                .recharts-legend-item {
+                    display: inline-block;
+                    margin: 0 10px;
+                }
+            </style>
+        </head>
+        <body>
+            <div id="container">
+                
+                
+                <div class="content-wrapper">
+                    
+                            <div class="component-wrapper" style="
+                                left: 80px;
+                                top: 260px;
+                                width: 800px;
+                                position: absolute;
+                                z-index: 1;
+                            ">
+                                
+                    <div class="ant-table-wrapper" style="width: 800px">
+                        <div class="ant-table">
+                            <div class="ant-table-container">
+                                <div class="ant-table-content">
+                                    <table style="table-layout: auto;">
+                                        <thead class="ant-table-thead">
+                                            <tr>
+                                                
+                                                    <th class="ant-table-cell">flag</th>
+                                                
+                                                    <th class="ant-table-cell">Báo giá text</th>
+                                                
+                                                    <th class="ant-table-cell">Hình ảnh</th>
+                                                
+                                                    <th class="ant-table-cell">image_url</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody class="ant-table-tbody">
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">aaaa</td>
+                                                    
+                                                        <td class="ant-table-cell">aaa</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">12312</td>
+                                                    
+                                                        <td class="ant-table-cell">1231</td>
+                                                    
+                                                        <td class="ant-table-cell">123</td>
+                                                    
+                                                        <td class="ant-table-cell">123</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">21312</td>
+                                                    
+                                                        <td class="ant-table-cell">123123</td>
+                                                    
+                                                        <td class="ant-table-cell">12312</td>
+                                                    
+                                                        <td class="ant-table-cell">3123</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/4599db5d-3112-ed11-b83e-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/94bd8550-4511-ed11-b83e-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/3255dae0-0ee7-ec11-bb3c-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/f94b365c-c413-ed11-b83e-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/768969a1-4fc4-ec11-a7b5-00224816e8b6.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/768969a1-4fc4-ec11-a7b5-00224816e8b6.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/768969a1-4fc4-ec11-a7b5-00224816e8b6.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/768969a1-4fc4-ec11-a7b5-00224816e8b6.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/768969a1-4fc4-ec11-a7b5-00224816e8b6.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/100dc225-d84a-ed11-bba2-000d3a856e52.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/79fd1749-8a18-ed11-b83f-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/1e68e745-8766-ef11-a670-6045bd1fd20d.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/60a6a446-e912-ed11-b83e-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/88a5030d-95a9-ec11-9840-000d3a859b73.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/d3dc6b06-2514-ef11-9f89-6045bd1d9bef.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/67f955ef-8666-ef11-a670-6045bd1fd20d.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/247e5bfa-8918-ed11-b83f-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/9c57150e-2b14-ef11-9f89-000d3aa14a54.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/9c57150e-2b14-ef11-9f89-000d3aa14a54.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/9c57150e-2b14-ef11-9f89-000d3aa14a54.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/9c57150e-2b14-ef11-9f89-000d3aa14a54.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/9c57150e-2b14-ef11-9f89-000d3aa14a54.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/c848fcc5-2e19-ed11-b83f-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/247e5bfa-8918-ed11-b83f-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/79fd1749-8a18-ed11-b83f-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/79fd1749-8a18-ed11-b83f-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/3a7746cf-1d7d-ee11-8179-000d3a08b73d.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/47d2f2de-fee6-ec11-bb3c-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/ae030dd6-a925-ed11-9db2-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/9c57150e-2b14-ef11-9f89-000d3aa14a54.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/9c57150e-2b14-ef11-9f89-000d3aa14a54.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/67f955ef-8666-ef11-a670-6045bd1fd20d.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/9c57150e-2b14-ef11-9f89-000d3aa14a54.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/5a7dc017-ec65-ef11-a670-000d3aa290f1.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/382b6b7e-1b7a-ee11-8179-000d3a09a1f9.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/3a7746cf-1d7d-ee11-8179-000d3a08b73d.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/47d2f2de-fee6-ec11-bb3c-000d3a80d3eb.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/488b4e2a-5777-4302-96a1-936673bbde15.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/768969a1-4fc4-ec11-a7b5-00224816e8b6.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">Báo giá chung (All)</td>
+                                                    
+                                                        <td class="ant-table-cell"></td>
+                                                    
+                                                        <td class="ant-table-cell">https://speechbob.blob.core.windows.net/productgroup-image/768969a1-4fc4-ec11-a7b5-00224816e8b6.jpg</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">3</td>
+                                                    
+                                                        <td class="ant-table-cell">3</td>
+                                                    
+                                                        <td class="ant-table-cell">3</td>
+                                                    
+                                                        <td class="ant-table-cell">3</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">32</td>
+                                                    
+                                                        <td class="ant-table-cell">23</td>
+                                                    
+                                                        <td class="ant-table-cell">232</td>
+                                                    
+                                                        <td class="ant-table-cell">32</td>
+                                                    
+                                                </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                            </div>
+                        
+                            <div class="component-wrapper" style="
+                                left: 80px;
+                                top: 160px;
+                                width: 800px;
+                                position: absolute;
+                                z-index: 1;
+                            ">
+                                <button 
+                class="ant-btn ant-btn-primary" 
+                style="width: 800px"
+            >
+                Add Item
+            </button>
+                            </div>
+                        
+                </div>
+
+                
+            </div>
+        </body>
+        </html>
