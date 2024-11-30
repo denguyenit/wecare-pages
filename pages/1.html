@@ -1,0 +1,501 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Preview Layout</title>
+             <!-- Thêm Recharts CDN -->
+            <script src="https://unpkg.com/react/umd/react.production.min.js"></script>
+            <script src="https://unpkg.com/react-dom/umd/react-dom.production.min.js"></script>
+            <script src="https://unpkg.com/recharts/umd/Recharts.min.js"></script>
+            <script src="https://cdn.tailwindcss.com"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/antd/4.22.5/antd.min.css" />
+            <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    min-height: 100vh;
+                }
+                #container {
+                    min-height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    position: relative;
+                    width: 100%;
+                    background: white;
+                }
+                .content-wrapper {
+                    flex: 1;
+                    position: relative;
+                    min-height: 500px;
+                    padding: 1rem;
+                }
+                .component-wrapper {
+                    position: absolute;
+                    background: white;
+                    border-radius: 0.25rem;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                    border: 1px solid #e5e7eb;
+                    transform: translate(0, 0);
+                }
+                     .heading-wrapper {
+                    position: absolute;
+                    background: white;
+                    transform: translate(0, 0);
+                }
+                .header-wrapper {
+                    position: sticky;
+                    top: 0;
+                    width: 100%;
+                    z-index: 100;
+                }
+                .footer-wrapper {
+                    width: 100%;
+                    margin-top: auto;
+                }
+                     /* Thêm CSS cho Ant Design Table */
+        .ant-table {
+            font-size: 14px;
+        }
+        .ant-table-thead > tr > th {
+            background: #fafafa;
+            color: rgba(0, 0, 0, 0.85);
+            font-weight: 500;
+            text-align: left;
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .ant-table-tbody > tr > td {
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .ant-table-tbody > tr:hover > td {
+            background: #fafafa;
+        }
+        .ant-table-cell {
+            min-width: 50px;
+        }
+           .recharts-wrapper {
+                    position: relative;
+                    cursor: default;
+                    width: 100%;
+                    height: 100%;
+                }
+                .recharts-surface {
+                    overflow: visible;
+                }
+                .recharts-legend-wrapper {
+                    position: absolute;
+                    width: 100%;
+                    height: auto;
+                    bottom: 5px;
+                    left: 0;
+                    display: flex;
+                    justify-content: center;
+                }
+                .recharts-default-legend {
+                    margin: 0;
+                    padding: 0;
+                    text-align: center;
+                }
+                .recharts-legend-item {
+                    display: inline-block;
+                    margin: 0 10px;
+                }
+            </style>
+        </head>
+        <body>
+            <div id="container">
+                
+                
+                <div class="content-wrapper">
+                    
+                            <div class="component-wrapper" style="
+                                left: 340px;
+                                top: 80px;
+                                
+                                position: absolute;
+                                z-index: 1;
+                            ">
+                                <button 
+                class="ant-btn ant-btn-primary" 
+                style="width: autopx"
+            >
+                Button
+            </button>
+                            </div>
+                        
+                            <div class="component-wrapper" style="
+                                left: 140px;
+                                top: 80px;
+                                
+                                position: absolute;
+                                z-index: 1;
+                            ">
+                                <input 
+                class="ant-input" 
+                placeholder="Input field"
+                style="width: 200px"
+            />
+                            </div>
+                        
+                            <div class="component-wrapper" style="
+                                left: 60px;
+                                top: 140px;
+                                width: 600px;
+                                position: absolute;
+                                z-index: 1;
+                            ">
+                                
+                    <div class="ant-table-wrapper" style="width: 600px">
+                        <div class="ant-table">
+                            <div class="ant-table-container">
+                                <div class="ant-table-content">
+                                    <table style="table-layout: auto;">
+                                        <thead class="ant-table-thead">
+                                            <tr>
+                                                
+                                                    <th class="ant-table-cell">Mã nhân viên</th>
+                                                
+                                                    <th class="ant-table-cell">Tên nhân viên</th>
+                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody class="ant-table-tbody">
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01179</td>
+                                                    
+                                                        <td class="ant-table-cell">Phạm Minh Hòa</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01180</td>
+                                                    
+                                                        <td class="ant-table-cell">Ngô Châu Thanh</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01181</td>
+                                                    
+                                                        <td class="ant-table-cell">Huỳnh Thuận Hoà</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01184</td>
+                                                    
+                                                        <td class="ant-table-cell">Phan Ngọc Duy</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01154</td>
+                                                    
+                                                        <td class="ant-table-cell">Bùi Thanh Liêm</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01109</td>
+                                                    
+                                                        <td class="ant-table-cell">Trần Văn Tiền</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01123</td>
+                                                    
+                                                        <td class="ant-table-cell">Văn Bá Hải</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01113</td>
+                                                    
+                                                        <td class="ant-table-cell">Phan Thành Nhân</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01114</td>
+                                                    
+                                                        <td class="ant-table-cell">Mai Thị Hồng Thạnh</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01115</td>
+                                                    
+                                                        <td class="ant-table-cell">Võ Minh Thành</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01116</td>
+                                                    
+                                                        <td class="ant-table-cell">Nguyễn Thị Ái Diễm</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01117</td>
+                                                    
+                                                        <td class="ant-table-cell">Võ Thị Chi Tuyết</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01118</td>
+                                                    
+                                                        <td class="ant-table-cell">Lê Văn Mến</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01119</td>
+                                                    
+                                                        <td class="ant-table-cell">Cáp Thị Hồng Lê</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01120</td>
+                                                    
+                                                        <td class="ant-table-cell">Lê Hoàng Vinh</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01121</td>
+                                                    
+                                                        <td class="ant-table-cell">Trần Văn Tài</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01122</td>
+                                                    
+                                                        <td class="ant-table-cell">Ngô Đình Phương</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01129</td>
+                                                    
+                                                        <td class="ant-table-cell">Nguyễn Duy Khanh</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01058</td>
+                                                    
+                                                        <td class="ant-table-cell">Phạm Ngọc Hưng</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01087</td>
+                                                    
+                                                        <td class="ant-table-cell">Cáp Thị Hồng Lê</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01090</td>
+                                                    
+                                                        <td class="ant-table-cell">Hồ Ngọc Thư</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01083</td>
+                                                    
+                                                        <td class="ant-table-cell">Bùi Lê Khanh</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01084</td>
+                                                    
+                                                        <td class="ant-table-cell">Lê Thị Kiều Oanh</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01096</td>
+                                                    
+                                                        <td class="ant-table-cell">Trần Nhật Đạt</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01048</td>
+                                                    
+                                                        <td class="ant-table-cell">Tạ Anh Việt</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01049</td>
+                                                    
+                                                        <td class="ant-table-cell">Đỗ Thanh Tâm</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01199</td>
+                                                    
+                                                        <td class="ant-table-cell">Huỳnh Hiếu</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01198</td>
+                                                    
+                                                        <td class="ant-table-cell">Nguyễn Tâm Thông</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01059</td>
+                                                    
+                                                        <td class="ant-table-cell">Nguyễn Duy Đặng</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01074</td>
+                                                    
+                                                        <td class="ant-table-cell">Hồ Nguyên Đạt</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01075</td>
+                                                    
+                                                        <td class="ant-table-cell">Trần Kim Tưởng</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01098</td>
+                                                    
+                                                        <td class="ant-table-cell">Trần Thị Kiều Trang</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01056</td>
+                                                    
+                                                        <td class="ant-table-cell">Nguyễn Đức Tài</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01082</td>
+                                                    
+                                                        <td class="ant-table-cell">Lê Thu Uyên</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01067</td>
+                                                    
+                                                        <td class="ant-table-cell">Trần Như Ta</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01069</td>
+                                                    
+                                                        <td class="ant-table-cell">Nguyễn Diệp Công</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01070</td>
+                                                    
+                                                        <td class="ant-table-cell">Nguyễn Văn Hùng</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01169</td>
+                                                    
+                                                        <td class="ant-table-cell">Trần Thị Mỹ Tuyền</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01079</td>
+                                                    
+                                                        <td class="ant-table-cell">Lục Gia Huy</td>
+                                                    
+                                                </tr>
+                                            
+                                                <tr>
+                                                    
+                                                        <td class="ant-table-cell">NV-01063</td>
+                                                    
+                                                        <td class="ant-table-cell">Bi Kế toán</td>
+                                                    
+                                                </tr>
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                            </div>
+                        
+                </div>
+
+                
+            </div>
+        </body>
+        </html>
