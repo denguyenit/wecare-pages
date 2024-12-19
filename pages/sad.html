@@ -1,0 +1,518 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Preview Layout</title>
+            
+            <!-- Load React và các dependencies -->
+            <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+            <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+            
+            <!-- Load D3 (dependency của Recharts) -->
+            <script src="https://d3js.org/d3.v7.min.js"></script>
+            
+            <!-- Load Recharts dependencies -->
+            <script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+            <script src="https://unpkg.com/victory-core/dist/victory-core.min.js"></script>
+            
+            <!-- Load Recharts -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.1.12/Recharts.js"></script>
+            
+            <!-- Load các thư viện khác -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+            <link rel="stylesheet" href="https://unpkg.com/antd@4.24.15/dist/antd.min.css" />
+            <script src="https://unpkg.com/antd@4.24.15/dist/antd.min.js"></script>
+            
+            <style>
+                /* CSS cho Chart */
+                .chart-wrapper {
+                    position: relative;
+                    width: 100%;
+                    overflow-x: auto;
+                    overflow-y: hidden;
+                    padding-bottom: 15px;
+                }
+            
+                .chart-container {
+                    min-width: 100%;
+                    height: 400px;
+                }
+                
+                .chart-title {
+                    text-align: center;
+                    margin: 10px 0;
+                    color: #1890ff;
+                }
+
+                /* CSS cho Table */
+                .ant-table-wrapper { width: 100%; }
+                .ant-table { font-size: 14px; width: 100%; border-collapse: collapse; }
+                .ant-table-thead > tr > th {
+                    background: #fafafa;
+                    color: rgba(0, 0, 0, 0.85);
+                    font-weight: 500;
+                    padding: 12px 16px;
+                    border-bottom: 1px solid #f0f0f0;
+                }
+                .ant-table-tbody > tr > td {
+                    padding: 12px 16px;
+                    border-bottom: 1px solid #f0f0f0;
+                }
+                .ant-table-tbody > tr:hover > td {
+                    background: #fafafa;
+                    cursor: pointer;
+                }
+                tr.selected { background-color: #e6f7ff !important; }
+            </style>
+
+            <script>
+                // Thêm định nghĩa DEFAULT_CHART_CONFIG
+                const DEFAULT_CHART_CONFIG = {
+                    types: {
+                        series1: 'bar',
+                        series2: 'bar'
+                    },
+                    colors: {
+                        fill1: "#1890ff",
+                        fill2: "#ff4d4f"
+                    }
+                };
+
+                // Thêm hàm getChartProperties
+                function getChartProperties(tableId) {
+                    if (!window.tableData) window.tableData = {};
+                    if (!window.tableData[tableId]) window.tableData[tableId] = {};
+                    if (!window.tableData[tableId].chartProperties) {
+                    window.tableData[tableId].chartProperties = {
+                        chartType1: DEFAULT_CHART_CONFIG.types.series1,
+                        chartType2: DEFAULT_CHART_CONFIG.types.series2,
+                        fill1: DEFAULT_CHART_CONFIG.colors.fill1,
+                        fill2: DEFAULT_CHART_CONFIG.colors.fill2
+                    };
+                    }
+                    return window.tableData[tableId].chartProperties;
+                }
+
+
+                // Định nghĩa hàm updateRelatedCharts
+                function updateRelatedCharts(tableId) {
+                document.querySelectorAll('.chart-container').forEach(chartContainer => {
+                    const chartId = chartContainer.id;
+                    const chartScript = document.querySelector(`script[data-chart-id="${chartId}"]`);
+                    const xAxisRotation = parseInt(chartScript.getAttribute('data-x-axis-rotation')) || 0;
+
+                    if (chartScript && chartScript.getAttribute('data-target-table') === tableId) {
+                        const table = document.querySelector(`table[data-id="${tableId}"]`);
+                        if (!table) return;
+
+                        const headerCells = Array.from(table.querySelectorAll('thead th'));
+                        const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+                        // Lấy properties từ script
+                        const chartType1 = chartScript.getAttribute('data-chart-type1');
+                        const chartType2 = chartScript.getAttribute('data-chart-type2');
+                        const fill1 = chartScript.getAttribute('data-fill1');
+                        const fill2 = chartScript.getAttribute('data-fill2');
+                        const series1Name = chartScript.getAttribute('data-series1-name');
+                        const series2Name = chartScript.getAttribute('data-series2-name');
+
+                        // Transform data
+                        const newData = rows.map(row => {
+                            const rowData = {};
+                            Array.from(row.cells).forEach((cell, index) => {
+                                const columnName = headerCells[index]?.getAttribute('data-column');
+                                if (columnName) {
+                                    rowData[columnName] = cell.textContent.trim();
+                                }
+                            });
+                            return rowData;
+                        });
+
+                        try {
+                            const {
+                                ComposedChart, Line, Bar, XAxis, YAxis, 
+                                CartesianGrid, Tooltip, Legend, Area,
+                                ResponsiveContainer
+                            } = window.Recharts;
+
+                            const chartData = newData.map(row => ({
+                                name: row[chartScript.getAttribute('data-name-field')],
+                                series1: parseFloat(row[chartScript.getAttribute('data-value-field1')]) || 0,
+                                series2: parseFloat(row[chartScript.getAttribute('data-value-field2')]) || 0
+                            }));
+
+                            const needScroll = chartData.length > 10;
+
+                            // Lấy component tương ứng với type
+                            const getChartComponent = (type) => {
+                                switch(type.toLowerCase()) {
+                                    case 'line':
+                                        return window.Recharts.Line;
+                                    case 'bar':
+                                        return window.Recharts.Bar;
+                                    case 'area':
+                                        return window.Recharts.Area;
+                                    default:
+                                        return window.Recharts.Bar;
+                                }
+                            };
+
+                            const ChartType1Component = getChartComponent(chartType1);
+                            const ChartType2Component = getChartComponent(chartType2);
+
+                            const ChartComponent = React.createElement(ResponsiveContainer, 
+                                { width: '100%', height: 400 },
+                                React.createElement(ComposedChart, {
+                                    data: chartData,
+                                    margin: { top: 30, right: 80, left: 80, bottom: xAxisRotation ? 100 : 60 }
+                                }, [
+                                    React.createElement(CartesianGrid, { strokeDasharray: "3 3" }),
+                                    React.createElement(XAxis, { 
+                                        dataKey: 'name',
+                                        height: 80,
+                                        interval: 0,
+                                        tickFormatter: (value) => {
+                                            return value && value.length > 10 
+                                                ? value.substring(0, 10) + "..." 
+                                                : value;
+                                        },
+                                        tick: {
+                                            angle: xAxisRotation,
+                                            textAnchor: xAxisRotation ? "end" : "middle",
+                                            fontSize: needScroll ? 11 : 12
+                                        }
+                                    }),
+                                    React.createElement(YAxis, {
+                                        yAxisId: 'left',
+                                        orientation: 'left',
+                                        width: 70,
+                                        stroke: fill1
+                                    }),
+                                    React.createElement(YAxis, {
+                                        yAxisId: 'right',
+                                        orientation: 'right',
+                                        width: 70,
+                                        stroke: fill2
+                                    }),
+                                    React.createElement(Tooltip),
+                                    React.createElement(Legend),
+                                    React.createElement(ChartType1Component, {
+                                        yAxisId: 'left',
+                                        dataKey: 'series1',
+                                        name: series1Name || "Series 1",
+                                        fill: fill1,
+                                        stroke: fill1
+                                    }),
+                                    React.createElement(ChartType2Component, {
+                                        yAxisId: 'right',
+                                        dataKey: 'series2',
+                                        name: series2Name || "Series 2",
+                                        fill: fill2,
+                                        stroke: fill2
+                                    })
+                                ])
+                            );
+
+                            ReactDOM.render(ChartComponent, chartContainer);
+                        } catch (error) {
+                            console.error('Error updating chart:', error);
+                        }
+                    }
+                });
+            }
+
+                // Các hàm xử lý khác
+                function handleRowClick(tableId, rowIndex, event) {
+    if ("TURBOPACK compile-time falsy", 0) {
+        "TURBOPACK unreachable";
+    }
+    // Khởi tạo state nếu chưa có
+    if (!window.tableStates) window.tableStates = {};
+    if (!window.tableData) window.tableData = {};
+    const table = document.querySelector(`table[data-id="${tableId}"]`);
+    if (!table) return;
+    // Bỏ chọn tất cả các row trước đó
+    const allRows = table.querySelectorAll("tbody tr");
+    allRows.forEach((row)=>row.classList.remove("selected"));
+    // Lấy row được click
+    const selectedRow = table.querySelector(`tbody tr[data-row-key="${rowIndex}"]`);
+    if (!selectedRow) return;
+    // Thêm class selected
+    selectedRow.classList.add("selected");
+    // Lấy data của row
+    const rowData = {};
+    const headerCells = table.querySelectorAll("thead th");
+    Array.from(selectedRow.cells).forEach((cell, index)=>{
+        const columnName = headerCells[index]?.getAttribute("data-column");
+        if (columnName) {
+            rowData[columnName] = cell.textContent.trim();
+        }
+    });
+    // Cập nhật state
+    window.tableStates[tableId] = {
+        selectedRecord: rowData,
+        selectedRowIndex: rowIndex,
+        selectedElement: selectedRow
+    };
+}
+                function showFormModal(buttonId, targetTableId, mode) {
+    const table = document.querySelector(`table[data-id="${targetTableId}"]`);
+    const columns = Array.from(table.rows[0].cells).map((cell)=>({
+            title: cell.textContent,
+            dataIndex: cell.getAttribute("data-column")
+        }));
+    // Tạo một div element để chứa form
+    const modalContent = document.createElement("div");
+    modalContent.innerHTML = `
+        <form id="form-${buttonId}">
+            ${columns.map((col)=>`
+                <div style="margin-bottom: 16px;">
+                    <label style="display: block; margin-bottom: 8px;">${col.title}</label>
+                    <input 
+                        class="ant-input" 
+                        name="${col.dataIndex}"
+                        value="${mode === "update" ? tableStates[targetTableId]?.selectedRecord[col.dataIndex] || "" : ""}"
+                        style="width: 100%"
+                    />
+                </div>
+            `).join("")}
+        </form>
+    `;
+    // Sử dụng dangerouslySetInnerHTML để render HTML
+    window.antd.Modal.info({
+        title: mode === "create" ? "Create New Record" : "Update Record",
+        content: React.createElement("div", {
+            dangerouslySetInnerHTML: {
+                __html: modalContent.innerHTML
+            }
+        }),
+        width: 600,
+        okText: "Submit",
+        cancelText: "Cancel",
+        onOk: ()=>{
+            handleFormSubmit(buttonId, targetTableId, mode);
+            return Promise.resolve();
+        }
+    });
+}
+                function handleButtonClick(buttonId, buttonType, targetTableId) {
+    console.log('Button clicked:', {
+        buttonId,
+        buttonType,
+        targetTableId
+    }); // Thêm log này
+    const targetTable = document.querySelector(`table[data-id="${targetTableId}"]`);
+    if (!targetTable) {
+        window.antd.message.error("Không tìm thấy bảng mục tiêu");
+        return;
+    }
+    // Đảm bảo tableStates tồn tại
+    if (!window.tableStates) {
+        window.tableStates = {};
+    }
+    switch(buttonType){
+        case "create":
+            showFormModal(buttonId, targetTableId, "create");
+            break;
+        case "update":
+            // Kiểm tra xem có bản ghi nào được chọn không
+            if (!window.tableStates[targetTableId]?.selectedRecord) {
+                window.antd.message.warning("Vui lòng chọn một bản ghi để cập nhật");
+                return;
+            }
+            showFormModal(buttonId, targetTableId, "update");
+            break;
+        case "delete":
+            if (!window.tableStates[targetTableId]?.selectedRecord) {
+                window.antd.message.warning("Vui lòng chọn một bản ghi để xóa");
+                return;
+            }
+        case 'delete':
+            console.log('Delete case triggered'); // Thêm log này
+            if (!window.tableStates[targetTableId]?.selectedRecord) {
+                window.antd.message.warning('Vui lòng chọn một bản ghi để xóa');
+                return;
+            }
+            window.antd.Modal.confirm({
+                title: 'Delete Confirmation',
+                content: 'Are you sure you want to delete this record?',
+                okText: 'Yes',
+                okType: 'danger',
+                cancelText: 'No',
+                keyboard: true,
+                maskClosable: true,
+                onOk () {
+                    handleDelete(targetTableId);
+                }
+            });
+            break;
+    }
+}
+                function handleFormSubmit(buttonId, targetTableId, mode) {
+    const form = document.querySelector(`#form-${buttonId}`);
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    const table = document.querySelector(`table[data-id="${targetTableId}"]`);
+    if (mode === 'create') {
+        const newRow = table.insertRow(-1);
+        Object.values(data).forEach((value)=>{
+            const cell = newRow.insertCell();
+            cell.textContent = value;
+            cell.className = 'ant-table-cell';
+        });
+        antd.message.success('Record created successfully');
+        // Cập nhật biểu đồ sau khi thêm dữ liệu mới
+        updateRelatedCharts(targetTableId);
+    } else {
+        const selectedRow = table.querySelector('tr.selected');
+        if (selectedRow) {
+            Object.values(data).forEach((value, index)=>{
+                selectedRow.cells[index].textContent = value;
+            });
+            antd.message.success('Record updated successfully');
+            // Cập nhật biểu đồ sau khi sửa dữ liệu
+            updateRelatedCharts(targetTableId);
+        }
+    }
+}
+                function handleDelete(targetTableId) {
+    if ("TURBOPACK compile-time falsy", 0) {
+        "TURBOPACK unreachable";
+    }
+    const tableState = window.tableStates[targetTableId];
+    if (!tableState?.selectedElement) {
+        window.antd.message.warning("Vui lòng chọn bản ghi để xóa");
+        return;
+    }
+    const table = document.querySelector(`table[data-id="${targetTableId}"]`);
+    if (!table) return;
+    // Lấy chart script để đọc các thuộc tính hiện tại
+    const chartScript = document.querySelector(`script[data-chart-id^="chart-"][data-target-table="${targetTableId}"]`);
+    // Log để debug
+    console.log('Chart script found:', chartScript);
+    console.log('Chart type 1:', chartScript?.getAttribute('data-chart-type1'));
+    console.log('Chart type 2:', chartScript?.getAttribute('data-chart-type2'));
+    // Lấy properties hiện tại từ window.tableData
+    const existingProperties = window.tableData[targetTableId]?.chartProperties || {};
+    console.log('Existing properties:', existingProperties);
+    const currentProperties = {
+        ...existingProperties,
+        chartType1: existingProperties.chartType1 || chartScript?.getAttribute('data-chart-type1') || DEFAULT_CHART_CONFIG.types.series1,
+        chartType2: existingProperties.chartType2 || chartScript?.getAttribute('data-chart-type2') || DEFAULT_CHART_CONFIG.types.series2,
+        series1Name: existingProperties.series1Name || chartScript?.getAttribute('data-series1-name'),
+        series2Name: existingProperties.series2Name || chartScript?.getAttribute('data-series2-name'),
+        fill1: existingProperties.fill1 || chartScript?.getAttribute('data-fill1') || DEFAULT_CHART_CONFIG.colors.fill1,
+        fill2: existingProperties.fill2 || chartScript?.getAttribute('data-fill2') || DEFAULT_CHART_CONFIG.colors.fill2,
+        xAxisRotation: existingProperties.xAxisRotation || parseInt(chartScript?.getAttribute('data-x-axis-rotation')) || 0 // Thêm dòng này
+    };
+    console.log('Saved chart properties:', currentProperties);
+    // Khởi tạo hoặc cập nhật tableData
+    if (!window.tableData[targetTableId]) {
+        window.tableData[targetTableId] = {};
+    }
+    const chartProperties = [
+        {
+            ...currentProperties
+        }
+    ];
+    console.log('Saved chart properties:', chartProperties[0]);
+    // Xóa row khỏi DOM
+    const rowToDelete = table.querySelector(`tr[data-row-key="${tableState.selectedRowIndex}"]`);
+    if (rowToDelete) {
+        rowToDelete.remove();
+    }
+    // Cập nhật lại data từ DOM hiện tại
+    const rows = Array.from(table.querySelectorAll('tbody tr'));
+    const headers = Array.from(table.querySelectorAll('thead th')).map((th)=>th.getAttribute('data-column'));
+    window.tableData[targetTableId].data = rows.map((row)=>{
+        const rowData = {};
+        Array.from(row.cells).forEach((cell, index)=>{
+            if (headers[index]) {
+                rowData[headers[index]] = cell.textContent.trim();
+            }
+        });
+        return rowData;
+    });
+    // Reset state
+    window.tableStates[targetTableId] = {
+        selectedRecord: null,
+        selectedRowIndex: null,
+        selectedElement: null
+    };
+    // Cập nhật lại index cho tất cả các rows
+    const tbody = table.querySelector('tbody');
+    if (tbody) {
+        Array.from(tbody.children).forEach((row, newIndex)=>{
+            row.setAttribute('data-row-key', newIndex);
+            row.onclick = (event)=>handleRowClick(targetTableId, newIndex, event);
+        });
+    }
+    // Cập nhật chart
+    updateRelatedCharts(targetTableId, chartProperties);
+    window.antd.message.success('Đã xóa bản ghi thành công');
+}
+            </script>
+        </head>
+        <body>
+            <div id="container">
+                
+                
+                <div class="content-wrapper">
+                    
+                            <div class="component-wrapper"
+                                style="
+                                    left: 20px;
+                                    top: 160px;
+                                    
+                                    position: absolute;
+                                    z-index: 1;
+                                "
+                            >
+                                
+                <button 
+                    class="ant-btn ant-btn-primary" 
+                    style="width: autopx"
+                    data-id="1734635647725"
+                    data-type="default"
+                    data-target-table=""
+                    onclick="handleButtonClick('1734635647725', 'default', 'undefined')"
+                    disabled
+                >
+                    default
+                </button>
+            
+                            </div>
+                        
+                            <div class="component-wrapper"
+                                style="
+                                    left: 40px;
+                                    top: 200px;
+                                    width: 600px;
+                                    position: absolute;
+                                    z-index: 1;
+                                "
+                            >
+                                
+                    <div class="ant-table-wrapper" style="width: 600px">
+                        <table data-id="1734635649431" class="ant-table">
+                            <thead class="ant-table-thead">
+                                <tr>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody class="ant-table-tbody">
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                
+                            </div>
+                        
+                </div>
+
+                
+            </div>
+        </body>
+        </html>
