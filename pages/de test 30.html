@@ -1,0 +1,226 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+      <div style="
+      position: absolute;
+      left: 194px;
+      top: 72px;
+      width: auto;
+      height: auto;
+    ">
+        
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol class="inline-flex items-center">
+            
+          <li class="inline-flex items-center">
+            <svg viewBox="64 64 896 896" focusable="false" data-icon="home" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M946.5 505L560.1 118.8l-25.9-25.9a31.5 31.5 0 00-44.4 0L77.5 505a63.9 63.9 0 00-18.8 46c.4 35.2 29.7 63.3 64.9 63.3h42.5V940h691.8V614.3h43.4c17.1 0 33.2-6.7 45.3-18.8a63.6 63.6 0 0018.7-45.3c0-17-6.7-33.1-18.8-45.2zM568 868H456V664h112v204zm217.9-325.7V868H632V640c0-22.1-17.9-40-40-40H432c-22.1 0-40 17.9-40 40v228H238.1V542.3h-96l370-369.7 23.1 23.1L882 542.3h-96.1z"></path></svg>
+            <span class="ml-1">Trang chủ</span>
+            
+            <span class="mx-2 text-gray-400">/</span>
+          </li>
+        
+          <li class="inline-flex items-center">
+            
+            <span class="">Application Center</span>
+            
+            <span class="mx-2 text-gray-400">/</span>
+          </li>
+        
+          <li class="inline-flex items-center">
+            
+            <span class="">Application List</span>
+            
+            
+          </li>
+        
+          </ol>
+        </nav>
+        <style>
+          .group:hover .breadcrumb-dropdown {
+            display: block;
+          }
+        </style>
+      
+      </div>
+    
+
+      <div style="
+      position: absolute;
+      left: 262px;
+      top: 148px;
+      width: auto;
+      height: auto;
+    ">
+        
+        <div class="menu-wrapper dark">
+          <ul class="custom-menu dark menu-vertical">
+            
+            <li class="menu-item">
+              Lựa chọn 1
+            </li>
+          
+            <li class="menu-item">
+              Lựa chọn 2
+            </li>
+          
+              <li class="menu-submenu">
+                <div class="menu-submenu-title">
+                  Sub Menu
+                  <span class="menu-submenu-arrow"></span>
+                </div>
+                <ul class="menu-submenu-popup">
+                  
+            <li class="menu-item">
+              Option 3
+            </li>
+          
+            <li class="menu-item">
+              Option 4
+            </li>
+          
+                </ul>
+              </li>
+            
+          </ul>
+        </div>
+        <style>
+          .menu-wrapper {
+            width: 100%;
+            height: 100%;
+          }
+
+          .custom-menu {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+          }
+
+          /* Horizontal Menu */
+          .menu-horizontal {
+            display: flex;
+            border-bottom: 1px solid #f0f0f0;
+          }
+
+          .menu-horizontal .menu-item,
+          .menu-horizontal .menu-submenu-title {
+            padding: 0 20px;
+            height: 40px;
+            line-height: 40px;
+            position: relative;
+            cursor: pointer;
+          }
+
+          /* Vertical Menu */
+          .menu-vertical {
+            border-right: 1px solid #f0f0f0;
+          }
+
+          .menu-vertical .menu-item,
+          .menu-vertical .menu-submenu-title {
+            padding: 0 16px;
+            height: 40px;
+            line-height: 40px;
+            cursor: pointer;
+          }
+
+          /* Inline Menu */
+          .menu-inline {
+            border-right: 1px solid #f0f0f0;
+          }
+
+          .menu-inline .menu-item,
+          .menu-inline .menu-submenu-title {
+            padding: 0 16px;
+            height: 40px;
+            line-height: 40px;
+            cursor: pointer;
+          }
+
+          /* Dark Theme */
+          .menu-wrapper.dark,
+          .custom-menu.dark {
+            background-color: #141414;
+          }
+
+          .custom-menu.dark .menu-item,
+          .custom-menu.dark .menu-submenu-title {
+            color: rgba(255, 255, 255, 0.65);
+          }
+
+          .custom-menu.dark .menu-item:hover,
+          .custom-menu.dark .menu-submenu-title:hover {
+            color: #fff;
+            background-color: #1f1f1f;
+          }
+
+          /* Submenu styles */
+          .menu-submenu {
+            position: relative;
+          }
+
+          .menu-submenu-popup {
+            display: none;
+            position: absolute;
+            background: #fff;
+            border: 1px solid #f0f0f0;
+            border-radius: 2px;
+            box-shadow: 0 3px 6px -4px rgba(0,0,0,.12);
+            min-width: 160px;
+          }
+
+          .menu-submenu:hover > .menu-submenu-popup {
+            display: block;
+          }
+
+          /* Dark theme submenu */
+          .custom-menu.dark .menu-submenu-popup {
+            background-color: #141414;
+            border-color: #303030;
+          }
+
+          .menu-submenu-arrow {
+            position: relative;
+            margin-left: 6px;
+          }
+
+          .menu-submenu-arrow::before,
+          .menu-submenu-arrow::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            height: 1.5px;
+            background: currentColor;
+            border-radius: 2px;
+            transition: background .3s;
+          }
+
+          .menu-submenu-arrow::before {
+            transform: rotate(45deg) translateX(2px);
+          }
+
+          .menu-submenu-arrow::after {
+            transform: rotate(-45deg) translateX(-2px);
+          }
+        </style>
+      
+      </div>
+    
+      </div>
+    </body>
+    </html>
+  
