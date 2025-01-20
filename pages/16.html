@@ -1,0 +1,131 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 483px;
+        top: 322px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="w-full">
+          <div class="ant-picker ant-picker-bordered" 
+               style="width: 100%;">
+            <div class="ant-picker-input">
+              <input 
+                type="text" 
+                placeholder="Select date and time"
+                readonly
+                value="2025-01-20 11:47:44"
+                class="w-full px-3 py-2 text-sm border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              
+                <span class="ant-picker-suffix">
+                  <span role="img" aria-label="calendar" class="anticon anticon-calendar">
+                    <svg viewBox="64 64 896 896" focusable="false" data-icon="calendar" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                      <path d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"></path>
+                    </svg>
+                  </span>
+                </span>
+                
+                  <span class="ant-picker-clear" role="button">
+                    <span role="img" aria-label="close-circle" class="anticon anticon-close-circle">
+                      <svg viewBox="64 64 896 896" focusable="false" data-icon="close-circle" width="1em" height="1em" fill="currentColor" aria-hidden="true">
+                        <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"></path>
+                      </svg>
+                    </span>
+                  </span>
+                
+              
+            </div>
+          </div>
+          
+            <div class="ant-picker-time-panel" style="display: none;">
+              <div class="ant-picker-header">
+                <div class="ant-picker-header-view">Select Time</div>
+              </div>
+              <div class="ant-picker-content">
+                <ul class="ant-picker-time-panel-column">
+                  <li class="ant-picker-time-panel-cell">00</li><li class="ant-picker-time-panel-cell">01</li><li class="ant-picker-time-panel-cell">02</li><li class="ant-picker-time-panel-cell">03</li><li class="ant-picker-time-panel-cell">04</li><li class="ant-picker-time-panel-cell">05</li><li class="ant-picker-time-panel-cell">06</li><li class="ant-picker-time-panel-cell">07</li><li class="ant-picker-time-panel-cell">08</li><li class="ant-picker-time-panel-cell">09</li><li class="ant-picker-time-panel-cell">10</li><li class="ant-picker-time-panel-cell">11</li><li class="ant-picker-time-panel-cell">12</li><li class="ant-picker-time-panel-cell">13</li><li class="ant-picker-time-panel-cell">14</li><li class="ant-picker-time-panel-cell">15</li><li class="ant-picker-time-panel-cell">16</li><li class="ant-picker-time-panel-cell">17</li><li class="ant-picker-time-panel-cell">18</li><li class="ant-picker-time-panel-cell">19</li><li class="ant-picker-time-panel-cell">20</li><li class="ant-picker-time-panel-cell">21</li><li class="ant-picker-time-panel-cell">22</li><li class="ant-picker-time-panel-cell">23</li>
+                </ul>
+                <ul class="ant-picker-time-panel-column">
+                  <li class="ant-picker-time-panel-cell">00</li><li class="ant-picker-time-panel-cell">01</li><li class="ant-picker-time-panel-cell">02</li><li class="ant-picker-time-panel-cell">03</li><li class="ant-picker-time-panel-cell">04</li><li class="ant-picker-time-panel-cell">05</li><li class="ant-picker-time-panel-cell">06</li><li class="ant-picker-time-panel-cell">07</li><li class="ant-picker-time-panel-cell">08</li><li class="ant-picker-time-panel-cell">09</li><li class="ant-picker-time-panel-cell">10</li><li class="ant-picker-time-panel-cell">11</li><li class="ant-picker-time-panel-cell">12</li><li class="ant-picker-time-panel-cell">13</li><li class="ant-picker-time-panel-cell">14</li><li class="ant-picker-time-panel-cell">15</li><li class="ant-picker-time-panel-cell">16</li><li class="ant-picker-time-panel-cell">17</li><li class="ant-picker-time-panel-cell">18</li><li class="ant-picker-time-panel-cell">19</li><li class="ant-picker-time-panel-cell">20</li><li class="ant-picker-time-panel-cell">21</li><li class="ant-picker-time-panel-cell">22</li><li class="ant-picker-time-panel-cell">23</li><li class="ant-picker-time-panel-cell">24</li><li class="ant-picker-time-panel-cell">25</li><li class="ant-picker-time-panel-cell">26</li><li class="ant-picker-time-panel-cell">27</li><li class="ant-picker-time-panel-cell">28</li><li class="ant-picker-time-panel-cell">29</li><li class="ant-picker-time-panel-cell">30</li><li class="ant-picker-time-panel-cell">31</li><li class="ant-picker-time-panel-cell">32</li><li class="ant-picker-time-panel-cell">33</li><li class="ant-picker-time-panel-cell">34</li><li class="ant-picker-time-panel-cell">35</li><li class="ant-picker-time-panel-cell">36</li><li class="ant-picker-time-panel-cell">37</li><li class="ant-picker-time-panel-cell">38</li><li class="ant-picker-time-panel-cell">39</li><li class="ant-picker-time-panel-cell">40</li><li class="ant-picker-time-panel-cell">41</li><li class="ant-picker-time-panel-cell">42</li><li class="ant-picker-time-panel-cell">43</li><li class="ant-picker-time-panel-cell">44</li><li class="ant-picker-time-panel-cell">45</li><li class="ant-picker-time-panel-cell">46</li><li class="ant-picker-time-panel-cell">47</li><li class="ant-picker-time-panel-cell">48</li><li class="ant-picker-time-panel-cell">49</li><li class="ant-picker-time-panel-cell">50</li><li class="ant-picker-time-panel-cell">51</li><li class="ant-picker-time-panel-cell">52</li><li class="ant-picker-time-panel-cell">53</li><li class="ant-picker-time-panel-cell">54</li><li class="ant-picker-time-panel-cell">55</li><li class="ant-picker-time-panel-cell">56</li><li class="ant-picker-time-panel-cell">57</li><li class="ant-picker-time-panel-cell">58</li><li class="ant-picker-time-panel-cell">59</li>
+                </ul>
+                <ul class="ant-picker-time-panel-column">
+                  <li class="ant-picker-time-panel-cell">00</li><li class="ant-picker-time-panel-cell">01</li><li class="ant-picker-time-panel-cell">02</li><li class="ant-picker-time-panel-cell">03</li><li class="ant-picker-time-panel-cell">04</li><li class="ant-picker-time-panel-cell">05</li><li class="ant-picker-time-panel-cell">06</li><li class="ant-picker-time-panel-cell">07</li><li class="ant-picker-time-panel-cell">08</li><li class="ant-picker-time-panel-cell">09</li><li class="ant-picker-time-panel-cell">10</li><li class="ant-picker-time-panel-cell">11</li><li class="ant-picker-time-panel-cell">12</li><li class="ant-picker-time-panel-cell">13</li><li class="ant-picker-time-panel-cell">14</li><li class="ant-picker-time-panel-cell">15</li><li class="ant-picker-time-panel-cell">16</li><li class="ant-picker-time-panel-cell">17</li><li class="ant-picker-time-panel-cell">18</li><li class="ant-picker-time-panel-cell">19</li><li class="ant-picker-time-panel-cell">20</li><li class="ant-picker-time-panel-cell">21</li><li class="ant-picker-time-panel-cell">22</li><li class="ant-picker-time-panel-cell">23</li><li class="ant-picker-time-panel-cell">24</li><li class="ant-picker-time-panel-cell">25</li><li class="ant-picker-time-panel-cell">26</li><li class="ant-picker-time-panel-cell">27</li><li class="ant-picker-time-panel-cell">28</li><li class="ant-picker-time-panel-cell">29</li><li class="ant-picker-time-panel-cell">30</li><li class="ant-picker-time-panel-cell">31</li><li class="ant-picker-time-panel-cell">32</li><li class="ant-picker-time-panel-cell">33</li><li class="ant-picker-time-panel-cell">34</li><li class="ant-picker-time-panel-cell">35</li><li class="ant-picker-time-panel-cell">36</li><li class="ant-picker-time-panel-cell">37</li><li class="ant-picker-time-panel-cell">38</li><li class="ant-picker-time-panel-cell">39</li><li class="ant-picker-time-panel-cell">40</li><li class="ant-picker-time-panel-cell">41</li><li class="ant-picker-time-panel-cell">42</li><li class="ant-picker-time-panel-cell">43</li><li class="ant-picker-time-panel-cell">44</li><li class="ant-picker-time-panel-cell">45</li><li class="ant-picker-time-panel-cell">46</li><li class="ant-picker-time-panel-cell">47</li><li class="ant-picker-time-panel-cell">48</li><li class="ant-picker-time-panel-cell">49</li><li class="ant-picker-time-panel-cell">50</li><li class="ant-picker-time-panel-cell">51</li><li class="ant-picker-time-panel-cell">52</li><li class="ant-picker-time-panel-cell">53</li><li class="ant-picker-time-panel-cell">54</li><li class="ant-picker-time-panel-cell">55</li><li class="ant-picker-time-panel-cell">56</li><li class="ant-picker-time-panel-cell">57</li><li class="ant-picker-time-panel-cell">58</li><li class="ant-picker-time-panel-cell">59</li>
+                </ul>
+              </div>
+            </div>
+          
+        </div>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
