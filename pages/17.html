@@ -1,0 +1,147 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 368px;
+        top: 330px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="w-full">
+          <div class="ant-picker" style="width: 100%;">
+            <div class="relative inline-flex w-full bg-white border border-gray-300 rounded-lg hover:border-blue-400 transition-colors">
+              <input 
+                type="text" 
+                placeholder="Select date and time"
+                value="2025-01-20 11:51:40"
+                readonly
+                class="w-full px-3 py-1.5 text-sm text-gray-700 bg-transparent outline-none cursor-pointer"
+              />
+              
+              <div class="flex items-center pr-2 gap-1">
+                
+                  <span class="text-gray-400 hover:text-gray-600 cursor-pointer p-1">
+                    <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor">
+                      <path d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z"></path>
+                    </svg>
+                  </span>
+                
+                
+                <span class="text-gray-400 p-1">
+                  <svg viewBox="64 64 896 896" width="1em" height="1em" fill="currentColor">
+                    <path d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <style>
+            .ant-picker {
+              position: relative;
+              display: inline-flex;
+              align-items: center;
+            }
+            
+            .ant-picker:hover {
+              border-color: #40a9ff;
+            }
+            
+            .ant-picker:focus-within {
+              border-color: #40a9ff;
+              box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+            }
+            
+            .ant-picker-disabled {
+              background: #f5f5f5;
+              cursor: not-allowed;
+            }
+            
+            .ant-picker-disabled input {
+              cursor: not-allowed;
+            }
+            
+            .ant-picker-clear {
+              position: absolute;
+              right: 24px;
+              cursor: pointer;
+            }
+            
+            .ant-picker-suffix {
+              position: absolute;
+              right: 8px;
+            }
+          </style>
+        </div>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
