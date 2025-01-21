@@ -1,0 +1,363 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 263px;
+        top: 293px;
+        width: 400px;
+        height: 300px;
+      ">
+          
+        <div class="carousel-wrapper" style="
+          width: 400px;
+          height: 300px;
+          position: relative;
+          overflow: hidden;
+          margin: 0 auto;
+        ">
+          <div class="carousel-container" id="carousel-carousel-1737441953945">
+            
+              <div class="carousel-slide active" data-index="0" style="
+                width: 100%;
+                height: 100%;
+                background-color: #364d79;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 1;
+                transform: translateX(0);
+                transition: all 0.5s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 1
+                </div>
+              </div>
+            
+              <div class="carousel-slide " data-index="1" style="
+                width: 100%;
+                height: 100%;
+                background-color: #1890ff;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.5s ease;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 2
+                </div>
+              </div>
+            
+              <div class="carousel-slide " data-index="2" style="
+                width: 100%;
+                height: 100%;
+                background-color: #52c41a;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.5s ease;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 3
+                </div>
+              </div>
+            
+              <div class="carousel-slide " data-index="3" style="
+                width: 100%;
+                height: 100%;
+                background-color: #722ed1;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.5s ease;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 4
+                </div>
+              </div>
+            
+          </div>
+
+          
+            <button class="carousel-prev" onclick="moveSlide('carousel-carousel-1737441953945', -1)" aria-label="Previous slide">❮</button>
+            <button class="carousel-next" onclick="moveSlide('carousel-carousel-1737441953945', 1)" aria-label="Next slide">❯</button>
+          
+
+          
+            <div class="carousel-dots" style="position: absolute; bottom: 12px; width: 100%; text-align: center;">
+              
+                <span class="carousel-dot active" 
+                      onclick="showSlide('carousel-carousel-1737441953945', 0)" 
+                      data-index="0">
+                </span>
+              
+                <span class="carousel-dot" 
+                      onclick="showSlide('carousel-carousel-1737441953945', 1)" 
+                      data-index="1">
+                </span>
+              
+                <span class="carousel-dot" 
+                      onclick="showSlide('carousel-carousel-1737441953945', 2)" 
+                      data-index="2">
+                </span>
+              
+                <span class="carousel-dot" 
+                      onclick="showSlide('carousel-carousel-1737441953945', 3)" 
+                      data-index="3">
+                </span>
+              
+            </div>
+          
+
+          <script>
+            function showSlide(carouselId, index) {
+              const carousel = document.getElementById(carouselId);
+              const slides = carousel.getElementsByClassName('carousel-slide');
+              const dots = carousel.parentElement.getElementsByClassName('carousel-dot');
+              const currentSlide = carousel.querySelector('.carousel-slide.active');
+              const currentIndex = parseInt(currentSlide.dataset.index);
+              
+              // Chuẩn bị tất cả slides
+              Array.from(slides).forEach((slide, i) => {
+                if (i !== currentIndex && i !== index) {
+                  slide.style.display = 'none';
+                  slide.style.transform = 'translateX(100%)';
+                }
+              });
+
+              // Hiển thị và chuẩn bị slide tiếp theo
+              slides[index].style.display = 'flex';
+              
+              // Xác định hướng chuyển động
+              const direction = index > currentIndex ? 1 : -1;
+              
+              // Set vị trí ban đầu cho slide mới
+              slides[index].style.transform = 'translateX(' + (direction * 100) + '%)';
+              slides[index].style.opacity = '1';
+              
+              // Force reflow để đảm bảo transition hoạt động
+              slides[index].offsetHeight;
+              
+              // Thực hiện animation
+              requestAnimationFrame(() => {
+                currentSlide.style.transform = 'translateX(' + (-direction * 100) + '%)';
+                currentSlide.style.opacity = '0';
+                slides[index].style.transform = 'translateX(0)';
+              });
+              
+              // Cập nhật trạng thái sau khi animation hoàn thành
+              setTimeout(() => {
+                currentSlide.style.display = 'none';
+                currentSlide.classList.remove('active');
+                slides[index].classList.add('active');
+              }, 500);
+              
+              // Cập nhật dots
+              Array.from(dots).forEach(dot => dot.classList.remove('active'));
+              dots[index].classList.add('active');
+            }
+
+            function moveSlide(carouselId, direction) {
+              const carousel = document.getElementById(carouselId);
+              const slides = carousel.getElementsByClassName('carousel-slide');
+              const currentSlide = carousel.querySelector('.carousel-slide.active');
+              let currentIndex = parseInt(currentSlide.dataset.index);
+              
+              let newIndex = currentIndex + direction;
+              if (newIndex >= slides.length) newIndex = 0;
+              if (newIndex < 0) newIndex = slides.length - 1;
+              
+              showSlide(carouselId, newIndex);
+            }
+
+            
+          </script>
+
+          <style>
+            .carousel-wrapper {
+              position: relative;
+            }
+            .carousel-slide {
+              opacity: 0;
+              transition: transform 0.5s ease, opacity 0.5s ease;
+              will-change: transform, opacity;
+            }
+            .carousel-slide.active {
+              opacity: 1;
+              transform: translateX(0);
+            }
+            .carousel-prev,
+            .carousel-next {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              background: rgba(0,0,0,0.5);
+              color: white;
+              border: none;
+              padding: 10px 15px;
+              cursor: pointer;
+              z-index: 2;
+              border-radius: 4px;
+              transition: background 0.3s ease;
+            }
+            .carousel-prev:hover,
+            .carousel-next:hover {
+              background: rgba(0,0,0,0.7);
+            }
+            .carousel-prev { left: 10px; }
+            .carousel-next { right: 10px; }
+            .carousel-dots {
+              display: flex;
+              justify-content: center;
+              gap: 8px;
+              z-index: 2;
+            }
+            .carousel-dot {
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              background: rgba(255,255,255,0.5);
+              cursor: pointer;
+              transition: background 0.3s ease;
+            }
+            .carousel-dot.active {
+              background: white;
+            }
+          </style>
+        </div>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
