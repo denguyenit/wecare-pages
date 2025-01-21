@@ -1,0 +1,270 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 402px;
+        top: 435px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="modal-container">
+          <button 
+            class="modal-trigger primary-button" 
+            onclick="toggleModal('modal-modal-1737445088685', true)"
+          >
+            Open Modal
+          </button>
+
+          <div id="modal-modal-1737445088685" class="modal" style="display: none;">
+            <div class="modal-overlay" onclick="toggleModal('modal-modal-1737445088685', false)"></div>
+            
+            <div class="modal-content" style="width: 520px;">
+              <div class="modal-header">
+                <h3 class="modal-title">Basic Modaljj</h3>
+                
+                  <button class="modal-close" onclick="toggleModal('modal-modal-1737445088685', false)">×</button>
+                
+              </div>
+              
+              <div class="modal-body">
+                5u56u56u56u5u65u56
+              </div>
+              
+              <div class="modal-footer">
+                <button class="modal-btn cancel-btn" onclick="toggleModal('modal-modal-1737445088685', false)">
+                  Cancel
+                </button>
+                <button class="modal-btn ok-btn" onclick="toggleModal('modal-modal-1737445088685', false)">
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function toggleModal(modalId, show) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            modal.style.display = show ? 'flex' : 'none';
+            document.body.style.overflow = show ? 'hidden' : '';
+            
+            if (show) {
+              modal.querySelector('.modal-content').style.transform = 'scale(0.7)';
+              setTimeout(() => {
+                modal.querySelector('.modal-content').style.transform = 'scale(1)';
+              }, 10);
+            }
+          }
+
+          // Close modal when clicking outside if maskClosable is true
+          
+            document.querySelector('#modal-modal-1737445088685 .modal-overlay').onclick = function(e) {
+              if (e.target === this) {
+                toggleModal('modal-modal-1737445088685', false);
+              }
+            };
+          
+        </script>
+
+        <style>
+          .modal-container {
+            position: relative;
+            display: inline-block;
+          }
+
+          .modal-trigger {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+          }
+
+          .primary-button {
+            background-color: #1677ff;
+            color: white;
+          }
+
+          .primary-button:hover {
+            background-color: #4096ff;
+          }
+
+          .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding-top: 0;
+          }
+
+          .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.45);
+            z-index: 1000;
+          }
+
+          .modal-content {
+            position: relative;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            z-index: 1001;
+            max-width: 90%;
+            transition: transform 0.2s ease;
+          }
+
+          .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+          }
+
+          .modal-title {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.88);
+          }
+
+          .modal-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.45);
+            cursor: pointer;
+            padding: 4px 8px;
+          }
+
+          .modal-close:hover {
+            color: rgba(0, 0, 0, 0.88);
+          }
+
+          .modal-body {
+            padding: 8px 0;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.88);
+          }
+
+          .modal-footer {
+            margin-top: 16px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+          }
+
+          .modal-btn {
+            padding: 4px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+          }
+
+          .cancel-btn {
+            background: white;
+            border: 1px solid #d9d9d9;
+            color: rgba(0, 0, 0, 0.88);
+          }
+
+          .cancel-btn:hover {
+            border-color: #4096ff;
+            color: #4096ff;
+          }
+
+          .ok-btn {
+            background: #1677ff;
+            border: 1px solid #1677ff;
+            color: white;
+          }
+
+          .ok-btn:hover {
+            background: #4096ff;
+            border-color: #4096ff;
+          }
+        </style>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
