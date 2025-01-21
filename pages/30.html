@@ -1,0 +1,254 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 259px;
+        top: 67px;
+        width: 400px;
+        height: 300px;
+      ">
+          
+        <div class="carousel-wrapper" style="
+          width: 400px;
+          height: 300px;
+          position: relative;
+          overflow: hidden;
+          margin: 0 auto;
+        ">
+          <div class="carousel-container">
+            
+              <div class="carousel-slide" style="
+                width: 100%;
+                height: 100%;
+                background-color: #364d79;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 1
+                </div>
+              </div>
+            
+              <div class="carousel-slide" style="
+                width: 100%;
+                height: 100%;
+                background-color: #1890ff;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 2
+                </div>
+              </div>
+            
+              <div class="carousel-slide" style="
+                width: 100%;
+                height: 100%;
+                background-color: #52c41a;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 3
+                </div>
+              </div>
+            
+              <div class="carousel-slide" style="
+                width: 100%;
+                height: 100%;
+                background-color: #722ed1;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 4
+                </div>
+              </div>
+            
+          </div>
+
+          
+            <button class="carousel-prev" aria-label="Previous slide">❮</button>
+            <button class="carousel-next" aria-label="Next slide">❯</button>
+          
+
+          
+            <div class="carousel-dots" style="position: absolute; bottom: 12px; width: 100%; text-align: center;">
+              
+                <span class="carousel-dot active" data-index="0"></span>
+              
+                <span class="carousel-dot" data-index="1"></span>
+              
+                <span class="carousel-dot" data-index="2"></span>
+              
+                <span class="carousel-dot" data-index="3"></span>
+              
+            </div>
+          
+
+          <style>
+            .carousel-wrapper {
+              position: relative;
+            }
+            .carousel-container {
+              display: flex;
+              transition: transform 0.5s ease;
+            }
+            .carousel-slide {
+              flex: 0 0 100%;
+            }
+            .carousel-prev,
+            .carousel-next {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              background: rgba(0,0,0,0.5);
+              color: white;
+              border: none;
+              padding: 10px;
+              cursor: pointer;
+              z-index: 2;
+            }
+            .carousel-prev { left: 10px; }
+            .carousel-next { right: 10px; }
+            .carousel-dots {
+              display: flex;
+              justify-content: center;
+              gap: 8px;
+            }
+            .carousel-dot {
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              background: rgba(255,255,255,0.5);
+              cursor: pointer;
+            }
+            .carousel-dot.active {
+              background: white;
+            }
+            
+          </style>
+        </div>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
