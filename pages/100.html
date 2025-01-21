@@ -1,0 +1,280 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 310px;
+        top: 243px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="drawer-container">
+          <button 
+            class="drawer-trigger primary-button" 
+            onclick="toggleDrawer('drawer-drawer-1737447102804', true)"
+          >
+            Open Drawer
+          </button>
+
+          <div id="drawer-drawer-1737447102804" class="drawer drawer-left">
+            <div class="drawer-overlay" onclick="toggleDrawer('drawer-drawer-1737447102804', false)"></div>
+            <div class="drawer-content">
+              <div class="drawer-header">
+                <h3 class="drawer-title">Basic u</h3>
+                <button class="drawer-close" onclick="toggleDrawer('drawer-drawer-1737447102804', false)">×</button>
+              </div>
+              <div class="drawer-body">
+                Drawer Content56u56
+              </div>
+              <div class="drawer-footer">
+                <button class="drawer-btn cancel-btn" onclick="toggleDrawer('drawer-drawer-1737447102804', false)">Cancel</button>
+                <button class="drawer-btn ok-btn" onclick="toggleDrawer('drawer-drawer-1737447102804', false)">OK</button>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            function toggleDrawer(drawerId, show) {
+              const drawer = document.getElementById(drawerId);
+              if (!drawer) return;
+              
+              const content = drawer.querySelector('.drawer-content');
+              const overlay = drawer.querySelector('.drawer-overlay');
+              
+              if (show) {
+                drawer.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                
+                // Add animation
+                requestAnimationFrame(() => {
+                  overlay.style.opacity = '1';
+                  content.style.transform = 'none';
+                });
+              } else {
+                overlay.style.opacity = '0';
+                content.style.transform = getHideTransform('left');
+                
+                setTimeout(() => {
+                  drawer.style.display = 'none';
+                  document.body.style.overflow = '';
+                }, 300);
+              }
+            }
+
+            function getHideTransform(placement) {
+              switch(placement) {
+                case 'left': return 'translateX(-100%)';
+                case 'right': return 'translateX(100%)';
+                case 'top': return 'translateY(-100%)';
+                case 'bottom': return 'translateY(100%)';
+                default: return 'translateX(100%)';
+              }
+            }
+          </script>
+
+          <style>
+            .drawer-container {
+              position: relative;
+              display: inline-block;
+            }
+
+            .drawer-trigger {
+              padding: 8px 16px;
+              border-radius: 6px;
+              font-size: 14px;
+              cursor: pointer;
+              border: 1px solid transparent;
+              transition: all 0.2s;
+            }
+
+            .primary-button {
+              background-color: #1677ff;
+              color: white;
+            }
+
+            .primary-button:hover {
+              background-color: #4096ff;
+            }
+
+            .drawer {
+              position: fixed;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              display: none;
+              z-index: 1000;
+            }
+
+            .drawer-overlay {
+              position: fixed;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              left: 0;
+              background-color: rgba(0, 0, 0, 0.45);
+              opacity: 0;
+              transition: opacity 0.3s;
+            }
+
+            .drawer-content {
+              position: fixed;
+              background: white;
+              transition: transform 0.3s ease;
+              display: flex;
+              flex-direction: column;
+              
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 378px;
+                transform: translateX(-100%);
+              
+            }
+
+            .drawer-header {
+              padding: 16px 24px;
+              border-bottom: 1px solid #f0f0f0;
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+            }
+
+            .drawer-title {
+              margin: 0;
+              font-size: 16px;
+              font-weight: 600;
+              color: rgba(0, 0, 0, 0.88);
+            }
+
+            .drawer-close {
+              background: none;
+              border: none;
+              font-size: 20px;
+              color: rgba(0, 0, 0, 0.45);
+              cursor: pointer;
+              padding: 4px 8px;
+            }
+
+            .drawer-close:hover {
+              color: rgba(0, 0, 0, 0.88);
+            }
+
+            .drawer-body {
+              padding: 24px;
+              flex: 1;
+              overflow-y: auto;
+              font-size: 14px;
+              color: rgba(0, 0, 0, 0.88);
+            }
+
+            .drawer-footer {
+              padding: 16px 24px;
+              border-top: 1px solid #f0f0f0;
+              display: flex;
+              justify-content: flex-end;
+              gap: 8px;
+            }
+
+            .drawer-btn {
+              padding: 4px 15px;
+              border-radius: 6px;
+              font-size: 14px;
+              cursor: pointer;
+              transition: all 0.2s;
+            }
+
+            .cancel-btn {
+              background: white;
+              border: 1px solid #d9d9d9;
+              color: rgba(0, 0, 0, 0.88);
+            }
+
+            .cancel-btn:hover {
+              border-color: #4096ff;
+              color: #4096ff;
+            }
+
+            .ok-btn {
+              background: #1677ff;
+              border: 1px solid #1677ff;
+              color: white;
+            }
+
+            .ok-btn:hover {
+              background: #4096ff;
+              border-color: #4096ff;
+            }
+          </style>
+        </div>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
