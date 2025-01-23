@@ -1,0 +1,115 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 121px;
+        top: 240px;
+        width: auto;
+        height: auto;
+      ">
+          
+          <div style="
+            position: absolute;
+            left: 121px;
+            top: 240px;
+            width: 120px;
+            height: 120px;
+          ">
+            <svg viewBox="0 0 120 120" class="transform -rotate-90">
+              <circle
+                cx="60"
+                cy="60"
+                r="56"
+                stroke="#f5f5f5"
+                stroke-width="8"
+                fill="none"
+              />
+              <circle
+                cx="60"
+                cy="60"
+                r="56"
+                stroke="#1677ff"
+                stroke-width="8"
+                fill="none"
+                stroke-dasharray="351.85837720205683"
+                stroke-dashoffset="246.30086404143978"
+                style="transition: stroke-dashoffset 0.3s ease"
+              />
+            </svg>
+            
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-lg">30%</span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
