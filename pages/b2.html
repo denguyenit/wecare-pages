@@ -1,0 +1,101 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 0px;
+        top: auto;
+        width: 100%;
+        height: auto;
+      ">
+          
+        <div class="w-full bg-[#0F3460] text-white">
+          <div class="px-6 py-3">
+            <div class="grid grid-cols-1 gap-6 pb-16 pt-4 sm:grid-cols-2 lg:grid-cols-4">
+              <div>
+                <h3 class="mb-5 text-2xl font-semibold">
+                  Công ty cổ phần Wecare Group
+                </h3>
+                <p class="mb-2 text-gray-400">
+                  Lô B39 KCN Phú Tài, Trần Quang Diệu, Quy Nhơn, Bình Định
+                </p>
+                <p class="mb-2 text-gray-400">
+                  Email: supportwecare@gmail.com
+                </p>
+                <p class="mb-4 text-gray-400">
+                  Phone: +84 378 339 009
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
