@@ -1,0 +1,125 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 236px;
+        top: 225px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="w-full">
+          <div class="relative flex items-center">
+            <div class="flex-grow bg-gray-200 rounded-full" 
+                 style="height: 8px;">
+              <div 
+                class="h-full rounded-full transition-all duration-300"
+                style="width: 30%; background-color: #1677ff;"
+              ></div>
+            </div>
+            
+              <span class="ml-3 text-sm text-gray-600">
+                30%
+              </span>
+            
+          </div>
+          <style>
+            .progress-active .progress-bg:before {
+              content: "";
+              opacity: 0;
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              background: #fff;
+              border-radius: 10px;
+              animation: progress-active 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+            }
+            @keyframes progress-active {
+              0% {
+                opacity: 0.1;
+                width: 0;
+              }
+              20% {
+                opacity: 0.5;
+                width: 0;
+              }
+              100% {
+                opacity: 0;
+                width: 100%;
+              }
+            }
+          </style>
+        </div>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
