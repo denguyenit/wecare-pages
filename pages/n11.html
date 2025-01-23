@@ -1,0 +1,624 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 475px;
+        top: 196px;
+        width: auto;
+        height: auto;
+      ">
+          
+          <div style="
+            position: absolute;
+            left: 475px;
+            top: 196px;
+            width: 120px;
+            height: 120px;
+          ">
+            <svg viewBox="0 0 120 120" class="transform -rotate-90">
+              <circle
+                cx="60"
+                cy="60"
+                r="56"
+                stroke="#E5E7EB"
+                stroke-width="8"
+                fill="none"
+              />
+              <circle
+                cx="60"
+                cy="60"
+                r="56"
+                stroke="#1677ff"
+                stroke-width="8"
+                fill="none"
+                stroke-dasharray="351.85837720205683"
+                stroke-dashoffset="246.30086404143978"
+                style="transition: stroke-dashoffset 0.3s ease"
+              />
+            </svg>
+            
+              <div class="absolute inset-0 flex items-center justify-center">
+                <span class="text-lg">30%</span>
+              </div>
+            
+          </div>
+        
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 279px;
+        top: 399px;
+        width: 400px;
+        height: 300px;
+      ">
+          
+        <div class="carousel-wrapper" style="
+          width: 400px;
+          height: 300px;
+          position: relative;
+          overflow: hidden;
+          margin: 0 auto;
+        ">
+          <div class="carousel-container" id="carousel-carousel-1737604273431">
+            
+              <div class="carousel-slide active" data-index="0" style="
+                width: 100%;
+                height: 100%;
+                background-color: #364d79;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 1;
+                transform: translateX(0);
+                transition: all 0.5s ease;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 1
+                </div>
+              </div>
+            
+              <div class="carousel-slide " data-index="1" style="
+                width: 100%;
+                height: 100%;
+                background-color: #1890ff;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.5s ease;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 2
+                </div>
+              </div>
+            
+              <div class="carousel-slide " data-index="2" style="
+                width: 100%;
+                height: 100%;
+                background-color: #52c41a;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.5s ease;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 3
+                </div>
+              </div>
+            
+              <div class="carousel-slide " data-index="3" style="
+                width: 100%;
+                height: 100%;
+                background-color: #722ed1;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.5s ease;
+                display: none;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+              ">
+                <div style="
+                  padding: 20px;
+                  background-color: rgba(0,0,0,0.5);
+                  width: 100%;
+                  height: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                ">
+                  Slide 4
+                </div>
+              </div>
+            
+          </div>
+
+          
+            <button class="carousel-prev" onclick="moveSlide('carousel-carousel-1737604273431', -1)" aria-label="Previous slide">❮</button>
+            <button class="carousel-next" onclick="moveSlide('carousel-carousel-1737604273431', 1)" aria-label="Next slide">❯</button>
+          
+
+          
+            <div class="carousel-dots" style="position: absolute; bottom: 12px; width: 100%; text-align: center;">
+              
+                <span class="carousel-dot active" 
+                      onclick="showSlide('carousel-carousel-1737604273431', 0)" 
+                      data-index="0">
+                </span>
+              
+                <span class="carousel-dot" 
+                      onclick="showSlide('carousel-carousel-1737604273431', 1)" 
+                      data-index="1">
+                </span>
+              
+                <span class="carousel-dot" 
+                      onclick="showSlide('carousel-carousel-1737604273431', 2)" 
+                      data-index="2">
+                </span>
+              
+                <span class="carousel-dot" 
+                      onclick="showSlide('carousel-carousel-1737604273431', 3)" 
+                      data-index="3">
+                </span>
+              
+            </div>
+          
+
+          <script>
+            function showSlide(carouselId, index) {
+              const carousel = document.getElementById(carouselId);
+              const slides = carousel.getElementsByClassName('carousel-slide');
+              const dots = carousel.parentElement.getElementsByClassName('carousel-dot');
+              const currentSlide = carousel.querySelector('.carousel-slide.active');
+              const currentIndex = parseInt(currentSlide.dataset.index);
+              
+              // Chuẩn bị tất cả slides
+              Array.from(slides).forEach((slide, i) => {
+                if (i !== currentIndex && i !== index) {
+                  slide.style.display = 'none';
+                  slide.style.transform = 'translateX(100%)';
+                }
+              });
+
+              // Hiển thị và chuẩn bị slide tiếp theo
+              slides[index].style.display = 'flex';
+              
+              // Xác định hướng chuyển động
+              const direction = index > currentIndex ? 1 : -1;
+              
+              // Set vị trí ban đầu cho slide mới
+              slides[index].style.transform = 'translateX(' + (direction * 100) + '%)';
+              slides[index].style.opacity = '1';
+              
+              // Force reflow để đảm bảo transition hoạt động
+              slides[index].offsetHeight;
+              
+              // Thực hiện animation
+              requestAnimationFrame(() => {
+                currentSlide.style.transform = 'translateX(' + (-direction * 100) + '%)';
+                currentSlide.style.opacity = '0';
+                slides[index].style.transform = 'translateX(0)';
+              });
+              
+              // Cập nhật trạng thái sau khi animation hoàn thành
+              setTimeout(() => {
+                currentSlide.style.display = 'none';
+                currentSlide.classList.remove('active');
+                slides[index].classList.add('active');
+              }, 500);
+              
+              // Cập nhật dots
+              Array.from(dots).forEach(dot => dot.classList.remove('active'));
+              dots[index].classList.add('active');
+            }
+
+            function moveSlide(carouselId, direction) {
+              const carousel = document.getElementById(carouselId);
+              const slides = carousel.getElementsByClassName('carousel-slide');
+              const currentSlide = carousel.querySelector('.carousel-slide.active');
+              let currentIndex = parseInt(currentSlide.dataset.index);
+              
+              let newIndex = currentIndex + direction;
+              if (newIndex >= slides.length) newIndex = 0;
+              if (newIndex < 0) newIndex = slides.length - 1;
+              
+              showSlide(carouselId, newIndex);
+            }
+
+            
+          </script>
+
+          <style>
+            .carousel-wrapper {
+              position: relative;
+            }
+            .carousel-slide {
+              opacity: 0;
+              transition: transform 0.5s ease, opacity 0.5s ease;
+              will-change: transform, opacity;
+            }
+            .carousel-slide.active {
+              opacity: 1;
+              transform: translateX(0);
+            }
+            .carousel-prev,
+            .carousel-next {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
+              background: rgba(0,0,0,0.5);
+              color: white;
+              border: none;
+              padding: 10px 15px;
+              cursor: pointer;
+              z-index: 2;
+              border-radius: 4px;
+              transition: background 0.3s ease;
+            }
+            .carousel-prev:hover,
+            .carousel-next:hover {
+              background: rgba(0,0,0,0.7);
+            }
+            .carousel-prev { left: 10px; }
+            .carousel-next { right: 10px; }
+            .carousel-dots {
+              display: flex;
+              justify-content: center;
+              gap: 8px;
+              z-index: 2;
+            }
+            .carousel-dot {
+              width: 8px;
+              height: 8px;
+              border-radius: 50%;
+              background: rgba(255,255,255,0.5);
+              cursor: pointer;
+              transition: background 0.3s ease;
+            }
+            .carousel-dot.active {
+              background: white;
+            }
+          </style>
+        </div>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 124px;
+        top: 351px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="inline-flex items-center">
+          <label class="custom-switch">
+            <input type="checkbox" class="switch-input" 
+              
+              
+            >
+            <span class="switch-slider">
+              <span class="absolute text-white text-xs" style="
+                  left: 6px; 
+                  top: 50%; 
+                  transform: translateY(-50%);
+                  z-index: 1;
+                ">
+                  OFF
+                </span>
+            </span>
+          </label>
+        </div>
+        <style>
+          
+          .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 22px;
+          }
+
+          .switch-input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+          }
+
+          .switch-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+            opacity: 1;
+          }
+
+          .switch-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            
+            
+          }
+
+          @keyframes switch-loading {
+            0% { transform: translateX(0) rotate(0deg); }
+            100% { transform: translateX(0) rotate(360deg); }
+          }
+        
+        </style>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 116px;
+        top: 264px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="inline-flex items-center">
+          <label class="custom-switch">
+            <input type="checkbox" class="switch-input" 
+              
+              
+            >
+            <span class="switch-slider">
+              
+            </span>
+          </label>
+        </div>
+        <style>
+          
+          .custom-switch {
+            position: relative;
+            display: inline-block;
+            width: 44px;
+            height: 22px;
+          }
+
+          .switch-input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+          }
+
+          .switch-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+            opacity: 1;
+          }
+
+          .switch-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            
+            
+          }
+
+          @keyframes switch-loading {
+            0% { transform: translateX(0) rotate(0deg); }
+            100% { transform: translateX(0) rotate(360deg); }
+          }
+        
+        </style>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 65px;
+        top: 354px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="p-6 h-full flex items-center">
+          <div class="custom-slider">
+            <div class="slider-track" style="top: 60%; height: 40%;"></div>
+            
+          <div class="slider-handle" style="top: calc(60% - 7px);"></div>
+        
+            
+          </div>
+          <style>
+            
+          .custom-slider {
+            position: relative;
+            height: 300;
+            width: 4px;
+            background-color: #f5f5f5;
+            border-radius: 2px;
+            cursor: pointer;
+          }
+          
+          .slider-track {
+            position: absolute;
+            width: 4px;
+            background-color: #1890ff;
+            border-radius: 2px;
+          }
+          
+          .slider-handle {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            margin-top: 0;
+            margin-left: -5px;
+            border: solid 2px #1890ff;
+            background-color: #fff;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: border-color 0.3s, box-shadow 0.6s;
+          }
+          
+          .slider-handle:hover {
+            border-color: #40a9ff;
+          }
+          
+          .slider-mark {
+            position: absolute;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.45);
+            text-align: center;
+            left: 12px;
+            transform: translateX(-50%);
+          }
+        
+          </style>
+        </div>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
