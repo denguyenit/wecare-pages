@@ -1,0 +1,511 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 42px;
+        top: 275px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <form class="space-y-6 p-6 bg-white rounded-lg shadow">
+          
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700">
+                Name
+              </label>
+              
+              <input 
+                type="text"
+                placeholder="Enter your name"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+            
+            </div>
+          
+            <div class="space-y-2">
+              <label class="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              
+              <input 
+                type="email"
+                placeholder="Enter your email"
+                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              />
+            
+            </div>
+          
+          
+          <div class="flex items-center justify-end gap-4">
+            <button 
+              type="button" 
+              class="px-4 py-2 border rounded-lg hover:bg-gray-50"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit" 
+              class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 406px;
+        top: 109px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="w-full">
+          <div class="relative">
+            
+              <div class="min-h-[32px] w-full px-4 py-2 border rounded-lg bg-white flex flex-wrap gap-2  min-h-[32px]">
+                
+                <input type="text" 
+                  placeholder="Select or input tags"
+                  class="flex-1 outline-none min-w-[60px] "
+                  
+                >
+              </div>
+            
+            
+            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-500">
+              
+              <svg class="h-5 w-5" viewBox="64 64 896 896" fill="currentColor">
+                <path d="M938 458.8l-29.6-312.6c-1.5-16.2-14.4-29-30.6-30.6L565.2 86h-.4c-3.2 0-5.7 1-7.6 2.9L88.9 557.2a9.96 9.96 0 000 14.1l363.8 363.8c1.9 1.9 4.4 2.9 7.1 2.9s5.2-1 7.1-2.9l468.3-468.3c2-2.1 3-5 2.8-8zM459.7 834.7L189.3 564.3 589 164.6 836 188l23.4 247-399.7 399.7zM680 256c-48.5 0-88 39.5-88 88s39.5 88 88 88 88-39.5 88-88-39.5-88-88-88zm0 120c-17.7 0-32-14.3-32-32s14.3-32 32-32 32 14.3 32 32-14.3 32-32 32z"></path>
+              </svg>
+            </div>
+
+            
+          </div>
+        </div>
+        <style>
+          select {
+            text-overflow: ellipsis;
+          }
+          select:disabled {
+            opacity: 0.6;
+          }
+        </style>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 144px;
+        top: 64px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="w-full">
+          <div class="relative">
+            
+              <div class="min-h-[32px] w-full px-4 py-2 border rounded-lg bg-white flex flex-wrap gap-2  min-h-[32px]">
+                
+                <input type="text" 
+                  placeholder="Select options"
+                  class="flex-1 outline-none min-w-[60px] "
+                  
+                >
+              </div>
+            
+            
+            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-500">
+              
+              <svg class="h-5 w-5" viewBox="64 64 896 896" fill="currentColor">
+                <path d="M632 888H392c-4.4 0-8 3.6-8 8v32c0 4.4 3.6 8 8 8h240c4.4 0 8-3.6 8-8v-32c0-4.4-3.6-8-8-8zM512 64c-181.1 0-328 146.9-328 328 0 121.4 66 227.4 164 284.1V792c0 17.7 14.3 32 32 32h264c17.7 0 32-14.3 32-32V676.1c98-56.7 164-162.7 164-284.1 0-181.1-146.9-328-328-328z"></path>
+              </svg>
+            </div>
+
+            
+          </div>
+        </div>
+        <style>
+          select {
+            text-overflow: ellipsis;
+          }
+          select:disabled {
+            opacity: 0.6;
+          }
+        </style>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 540px;
+        top: 366px;
+        width: auto;
+        height: 33px;
+      ">
+          
+        <div class="modal-container">
+          <button 
+            class="modal-trigger primary-button" 
+            onclick="toggleModal('modal-modal-1737617424632', true)"
+          >
+            Open Modal
+          </button>
+
+          <div id="modal-modal-1737617424632" class="modal" style="display: none;">
+            <div class="modal-overlay" onclick="toggleModal('modal-modal-1737617424632', false)"></div>
+            
+            <div class="modal-content" style="width: 520px; top: 50%; transform: translateY(-50%);">
+              <div class="modal-header">
+                <h3 class="modal-title">Basic Modal</h3>
+                
+                  <button class="modal-close" onclick="toggleModal('modal-modal-1737617424632', false)">×</button>
+                
+              </div>
+              
+              <div class="modal-body">
+                Some c
+              </div>
+              
+              <div class="modal-footer">
+                <button class="modal-btn modal-cancel" onclick="toggleModal('modal-modal-1737617424632', false)">Cancel</button>
+                <button class="modal-btn modal-ok" onclick="toggleModal('modal-modal-1737617424632', false)">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function toggleModal(modalId, show) {
+            const modal = document.getElementById(modalId);
+            if (!modal) return;
+            
+            modal.style.display = show ? 'flex' : 'none';
+            document.body.style.overflow = show ? 'hidden' : '';
+            
+            if (show) {
+              modal.querySelector('.modal-content').style.transform = 'scale(0.7)';
+              setTimeout(() => {
+                modal.querySelector('.modal-content').style.transform = 'scale(1)';
+              }, 10);
+            }
+          }
+
+          // Close modal when clicking outside if maskClosable is true
+          
+            document.querySelector('#modal-modal-1737617424632 .modal-overlay').onclick = function(e) {
+              if (e.target === this) {
+                toggleModal('modal-modal-1737617424632', false);
+              }
+            };
+          
+        </script>
+
+        <style>
+          .modal-container {
+            position: relative;
+            display: inline-block;
+          }
+
+          .modal-trigger {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+          }
+
+          .primary-button {
+            background-color: #1677ff;
+            color: white;
+          }
+
+          .primary-button:hover {
+            background-color: #4096ff;
+          }
+
+          .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding-top: 0;
+          }
+
+          .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.45);
+            z-index: 1000;
+          }
+
+          .modal-content {
+            position: relative;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            z-index: 1001;
+            max-width: 90%;
+            transition: transform 0.2s ease;
+          }
+
+          .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+          }
+
+          .modal-title {
+            margin: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.88);
+          }
+
+          .modal-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            color: rgba(0, 0, 0, 0.45);
+            cursor: pointer;
+            padding: 4px 8px;
+          }
+
+          .modal-close:hover {
+            color: rgba(0, 0, 0, 0.88);
+          }
+
+          .modal-body {
+            padding: 8px 0;
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.88);
+          }
+
+          .modal-footer {
+            margin-top: 16px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+          }
+
+          .modal-btn {
+            padding: 4px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+          }
+
+          .modal-cancel {
+            background: white;
+            border: 1px solid #d9d9d9;
+            color: rgba(0, 0, 0, 0.88);
+          }
+
+          .modal-cancel:hover {
+            border-color: #4096ff;
+            color: #4096ff;
+          }
+
+          .modal-ok {
+            background: #1677ff;
+            border: 1px solid #1677ff;
+            color: white;
+          }
+
+          .modal-ok:hover {
+            background: #4096ff;
+            border-color: #4096ff;
+          }
+        </style>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 574px;
+        top: 221px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="radio-button-wrapper" style="">
+          
+              <div class="ant-radio-group">
+                
+                    <label class="ant-radio-button-wrapper ant-radio-button-wrapper-checked">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input" checked 
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option A</span>
+                    </label>
+                  
+                    <label class="ant-radio-button-wrapper">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input"  
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option B</span>
+                    </label>
+                  
+                    <label class="ant-radio-button-wrapper">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input"  
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option C</span>
+                    </label>
+                  
+              </div>
+            
+        </div>
+        <style>
+          .ant-radio-group {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: rgba(0, 0, 0, 0.88);
+            font-size: 14px;
+            line-height: 1.5714285714285714;
+            list-style: none;
+            display: inline-block;
+          }
+          .ant-radio-wrapper {
+            margin-right: 8px;
+          }
+          .ant-radio-button-wrapper {
+            position: relative;
+            display: inline-block;
+            height: 32px;
+            margin: 0;
+            padding: 0 15px;
+            line-height: 30px;
+            background: #ffffff;
+            border: 1px solid #d9d9d9;
+            cursor: pointer;
+            transition: all 0.3s;
+          }
+          .ant-radio-button-wrapper:first-child {
+            border-radius: 6px 0 0 6px;
+          }
+          .ant-radio-button-wrapper:last-child {
+            border-radius: 0 6px 6px 0;
+          }
+          .ant-radio-button-wrapper-checked {
+            z-index: 1;
+          }
+          .ant-radio-button-wrapper-disabled {
+            color: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.04);
+            border-color: #d9d9d9;
+            cursor: not-allowed;
+          }
+          
+              .radio-button-wrapper .ant-radio-button-wrapper {
+                height: 32px;
+                padding: 0 15px;
+                color: rgba(0, 0, 0, 0.88);
+                background: #ffffff;
+                border: 1px solid #d9d9d9;
+                font-size: 14px;
+              }
+              .radio-button-wrapper .ant-radio-button-wrapper-checked {
+                color: #1677ff;
+                background: #ffffff;
+                border-color: #1677ff;
+              }
+            
+        </style>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
