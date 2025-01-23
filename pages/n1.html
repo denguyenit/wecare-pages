@@ -1,0 +1,121 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 236px;
+        top: 225px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="w-full">
+          <div class="relative">
+            
+              <select class="
+                w-full px-4 py-2 pr-8
+                border rounded-lg
+                appearance-none
+                bg-white
+                
+                text-base
+              " >
+                <option value="" disabled selected>Select option</option>
+                
+                  <option value="1">Option 1</option>
+                
+                  <option value="2">Option 2</option>
+                
+                  <option value="3">Option 3</option>
+                
+              </select>
+            
+            
+            <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-500">
+              
+              <svg class="h-5 w-5" viewBox="64 64 896 896" fill="currentColor">
+                <path d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z"></path>
+              </svg>
+            </div>
+
+            
+          </div>
+        </div>
+        <style>
+          select {
+            text-overflow: ellipsis;
+          }
+          select:disabled {
+            opacity: 0.6;
+          }
+        </style>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
