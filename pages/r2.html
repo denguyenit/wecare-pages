@@ -1,0 +1,542 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 206px;
+        top: 140px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="radio-basic" style="">
+          
+              <div class="ant-radio-group">
+                
+                    <label class="ant-radio-wrapper ant-radio-wrapper-checked 
+                      ">
+                      <span class="ant-radio">
+                        <input type="radio" class="ant-radio-input" checked 
+                           />
+                        <span class="ant-radio-inner"></span>
+                      </span>
+                      <span>Option A</span>
+                    </label>
+                  
+                    <label class="ant-radio-wrapper 
+                      ">
+                      <span class="ant-radio">
+                        <input type="radio" class="ant-radio-input"  
+                           />
+                        <span class="ant-radio-inner"></span>
+                      </span>
+                      <span>Option B</span>
+                    </label>
+                  
+                    <label class="ant-radio-wrapper 
+                      ">
+                      <span class="ant-radio">
+                        <input type="radio" class="ant-radio-input"  
+                           />
+                        <span class="ant-radio-inner"></span>
+                      </span>
+                      <span>Option C</span>
+                    </label>
+                  
+              </div>
+            
+        </div>
+        <style>
+          .ant-radio-group {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: rgba(0, 0, 0, 0.88);
+            font-size: 14px;
+            line-height: 1.5714285714285714;
+            list-style: none;
+            display: inline-block;
+          }
+          .ant-radio-wrapper {
+            margin-right: 8px;
+          }
+          .ant-radio-button-wrapper {
+            position: relative;
+            display: inline-block;
+            height: 32px;
+            margin: 0;
+            padding: 0 15px;
+            line-height: 30px;
+            background: #ffffff;
+            border: 1px solid #d9d9d9;
+            cursor: pointer;
+            transition: all 0.3s;
+          }
+          .ant-radio-button-wrapper:first-child {
+            border-radius: 6px 0 0 6px;
+          }
+          .ant-radio-button-wrapper:last-child {
+            border-radius: 0 6px 6px 0;
+          }
+          .ant-radio-button-wrapper-checked {
+            z-index: 1;
+          }
+          .ant-radio-button-wrapper-disabled {
+            color: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.04);
+            border-color: #d9d9d9;
+            cursor: not-allowed;
+          }
+          
+        </style>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 108px;
+        top: 212px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="radio-button-wrapper" style="">
+          
+              <div class="ant-radio-group">
+                
+                    <label class="ant-radio-button-wrapper ant-radio-button-wrapper-checked">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input" checked 
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option A</span>
+                    </label>
+                  
+                    <label class="ant-radio-button-wrapper">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input"  
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option B</span>
+                    </label>
+                  
+                    <label class="ant-radio-button-wrapper">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input"  
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option C</span>
+                    </label>
+                  
+              </div>
+            
+        </div>
+        <style>
+          .ant-radio-group {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: rgba(0, 0, 0, 0.88);
+            font-size: 14px;
+            line-height: 1.5714285714285714;
+            list-style: none;
+            display: inline-block;
+          }
+          .ant-radio-wrapper {
+            margin-right: 8px;
+          }
+          .ant-radio-button-wrapper {
+            position: relative;
+            display: inline-block;
+            height: 32px;
+            margin: 0;
+            padding: 0 15px;
+            line-height: 30px;
+            background: #ffffff;
+            border: 1px solid #d9d9d9;
+            cursor: pointer;
+            transition: all 0.3s;
+          }
+          .ant-radio-button-wrapper:first-child {
+            border-radius: 6px 0 0 6px;
+          }
+          .ant-radio-button-wrapper:last-child {
+            border-radius: 0 6px 6px 0;
+          }
+          .ant-radio-button-wrapper-checked {
+            z-index: 1;
+          }
+          .ant-radio-button-wrapper-disabled {
+            color: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.04);
+            border-color: #d9d9d9;
+            cursor: not-allowed;
+          }
+          
+              .radio-button-wrapper .ant-radio-button-wrapper {
+                height: 32px;
+                padding: 0 15px;
+                color: rgba(0, 0, 0, 0.88);
+                background: #ffffff;
+                border: 1px solid #d9d9d9;
+                font-size: 14px;
+              }
+              .radio-button-wrapper .ant-radio-button-wrapper-checked {
+                color: #1677ff;
+                background: #ffffff;
+                border-color: #1677ff;
+              }
+            
+        </style>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 143px;
+        top: 296px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="radio-button-solid" style="">
+          
+              <div class="ant-radio-group">
+                
+                    <label class="ant-radio-button-wrapper ant-radio-button-wrapper-checked">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input" checked 
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option A</span>
+                    </label>
+                  
+                    <label class="ant-radio-button-wrapper">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input"  
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option B</span>
+                    </label>
+                  
+                    <label class="ant-radio-button-wrapper">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input"  
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option C</span>
+                    </label>
+                  
+              </div>
+            
+        </div>
+        <style>
+          .ant-radio-group {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: rgba(0, 0, 0, 0.88);
+            font-size: 14px;
+            line-height: 1.5714285714285714;
+            list-style: none;
+            display: inline-block;
+          }
+          .ant-radio-wrapper {
+            margin-right: 8px;
+          }
+          .ant-radio-button-wrapper {
+            position: relative;
+            display: inline-block;
+            height: 32px;
+            margin: 0;
+            padding: 0 15px;
+            line-height: 30px;
+            background: #ffffff;
+            border: 1px solid #d9d9d9;
+            cursor: pointer;
+            transition: all 0.3s;
+          }
+          .ant-radio-button-wrapper:first-child {
+            border-radius: 6px 0 0 6px;
+          }
+          .ant-radio-button-wrapper:last-child {
+            border-radius: 0 6px 6px 0;
+          }
+          .ant-radio-button-wrapper-checked {
+            z-index: 1;
+          }
+          .ant-radio-button-wrapper-disabled {
+            color: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.04);
+            border-color: #d9d9d9;
+            cursor: not-allowed;
+          }
+          
+              .radio-button-solid .ant-radio-button-wrapper {
+                height: 32px;
+                padding: 0 15px;
+                font-size: 14px;
+              }
+              .radio-button-solid .ant-radio-button-wrapper-checked {
+                color: #fff;
+                background: #1677ff;
+                border-color: #1677ff;
+              }
+            
+        </style>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 478px;
+        top: 236px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="radio-button-size" style="">
+          
+              <div class="ant-radio-group">
+                
+                    <label class="ant-radio-button-wrapper ant-radio-button-wrapper-checked">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input" checked 
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option A</span>
+                    </label>
+                  
+                    <label class="ant-radio-button-wrapper">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input"  
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option B</span>
+                    </label>
+                  
+                    <label class="ant-radio-button-wrapper">
+                      <span class="ant-radio-button">
+                        <input type="radio" class="ant-radio-button-input"  
+                           />
+                        <span class="ant-radio-button-inner"></span>
+                      </span>
+                      <span>Option C</span>
+                    </label>
+                  
+              </div>
+            
+        </div>
+        <style>
+          .ant-radio-group {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: rgba(0, 0, 0, 0.88);
+            font-size: 14px;
+            line-height: 1.5714285714285714;
+            list-style: none;
+            display: inline-block;
+          }
+          .ant-radio-wrapper {
+            margin-right: 8px;
+          }
+          .ant-radio-button-wrapper {
+            position: relative;
+            display: inline-block;
+            height: 32px;
+            margin: 0;
+            padding: 0 15px;
+            line-height: 30px;
+            background: #ffffff;
+            border: 1px solid #d9d9d9;
+            cursor: pointer;
+            transition: all 0.3s;
+          }
+          .ant-radio-button-wrapper:first-child {
+            border-radius: 6px 0 0 6px;
+          }
+          .ant-radio-button-wrapper:last-child {
+            border-radius: 0 6px 6px 0;
+          }
+          .ant-radio-button-wrapper-checked {
+            z-index: 1;
+          }
+          .ant-radio-button-wrapper-disabled {
+            color: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.04);
+            border-color: #d9d9d9;
+            cursor: not-allowed;
+          }
+          
+              .radio-button-size .ant-radio-button-wrapper {
+                height: 40px;
+                padding: 0 15px;
+                font-size: 16px;
+                line-height: 40px;
+              }
+            
+        </style>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 218px;
+        top: 387px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="radio-disabled" style="">
+          
+              <div class="ant-radio-group">
+                
+                    <label class="ant-radio-wrapper ant-radio-wrapper-checked 
+                      ant-radio-wrapper-disabled">
+                      <span class="ant-radio">
+                        <input type="radio" class="ant-radio-input" checked 
+                          disabled />
+                        <span class="ant-radio-inner"></span>
+                      </span>
+                      <span>Option A</span>
+                    </label>
+                  
+                    <label class="ant-radio-wrapper 
+                      ant-radio-wrapper-disabled">
+                      <span class="ant-radio">
+                        <input type="radio" class="ant-radio-input"  
+                          disabled />
+                        <span class="ant-radio-inner"></span>
+                      </span>
+                      <span>Option B</span>
+                    </label>
+                  
+              </div>
+            
+        </div>
+        <style>
+          .ant-radio-group {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            color: rgba(0, 0, 0, 0.88);
+            font-size: 14px;
+            line-height: 1.5714285714285714;
+            list-style: none;
+            display: inline-block;
+          }
+          .ant-radio-wrapper {
+            margin-right: 8px;
+          }
+          .ant-radio-button-wrapper {
+            position: relative;
+            display: inline-block;
+            height: 32px;
+            margin: 0;
+            padding: 0 15px;
+            line-height: 30px;
+            background: #ffffff;
+            border: 1px solid #d9d9d9;
+            cursor: pointer;
+            transition: all 0.3s;
+          }
+          .ant-radio-button-wrapper:first-child {
+            border-radius: 6px 0 0 6px;
+          }
+          .ant-radio-button-wrapper:last-child {
+            border-radius: 0 6px 6px 0;
+          }
+          .ant-radio-button-wrapper-checked {
+            z-index: 1;
+          }
+          .ant-radio-button-wrapper-disabled {
+            color: rgba(0, 0, 0, 0.25);
+            background: rgba(0, 0, 0, 0.04);
+            border-color: #d9d9d9;
+            cursor: not-allowed;
+          }
+          
+        </style>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
