@@ -1,0 +1,126 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 223px;
+        top: 242px;
+        width: auto;
+        height: auto;
+      ">
+          
+            <div class="relative">
+              <input 
+                type="password" 
+                id="password-input-1737699708172"
+                class="
+        w-full px-3 py-2 border rounded-lg
+        h-10
+        bg-white
+        border-gray-300
+      "
+                placeholder="Password input"
+                
+              />
+              
+                <button 
+                  type="button"
+                  onclick="togglePasswordVisibility('password-input-1737699708172')"
+                  class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  <svg id="eye-icon-input-1737699708172" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path class="eye-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path class="eye-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                    <path class="eye-closed hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
+                  </svg>
+                </button>
+                <script>
+                  function togglePasswordVisibility(inputId) {
+                    const input = document.getElementById(inputId);
+                    const eyeIcon = document.getElementById('eye-icon-' + inputId.split('-')[1]);
+                    const eyeOpen = eyeIcon.querySelectorAll('.eye-open');
+                    const eyeClosed = eyeIcon.querySelectorAll('.eye-closed');
+                    
+                    if (input.type === 'password') {
+                      input.type = 'text';
+                      eyeOpen.forEach(path => path.classList.add('hidden'));
+                      eyeClosed.forEach(path => path.classList.remove('hidden'));
+                    } else {
+                      input.type = 'password';
+                      eyeOpen.forEach(path => path.classList.remove('hidden'));
+                      eyeClosed.forEach(path => path.classList.add('hidden'));
+                    }
+                  }
+                </script>
+              
+            </div>
+          
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
