@@ -1,0 +1,149 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+      <style>
+        .bg-clip-text {
+          -webkit-background-clip: text;
+          background-clip: text;
+        }
+        /* DatePicker specific styles */
+        .datepicker-popup {
+          display: none;
+        }
+        .datepicker-wrapper:focus-within .datepicker-popup {
+          display: block;
+        }
+        .datepicker-day:hover {
+          background-color: #f3f4f6;
+        }
+        .datepicker-day.selected {
+          background-color: #3b82f6;
+          color: white;
+        }
+        .datepicker-day.today {
+          border: 1px solid #3b82f6;
+        }
+        /* Ensure proper z-index stacking */
+        .datepicker-wrapper {
+          position: relative;
+          z-index: 40;
+        }
+        .datepicker-popup {
+          z-index: 50;
+        }
+        /* Additional required styles */
+        input[type="text"] {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 6px;
+          padding: 8px 12px;
+          width: 100%;
+          font-size: 14px;
+        }
+        select {
+          background: white;
+          border: 1px solid #d1d5db;
+          border-radius: 4px;
+          padding: 4px 8px;
+          font-size: 14px;
+        }
+        button {
+          cursor: pointer;
+        }
+        button:disabled {
+          cursor: not-allowed;
+          opacity: 0.5;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="relative min-h-screen bg-gray-100">
+        
+        <div style="
+        position: absolute;
+        left: 353px;
+        top: 219px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="relative flex items-center" style="
+          position: absolute;
+          left: 353px;
+          top: 219px;
+          bottom: auto;
+          width: auto;
+        ">
+          <div class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" style="z-index: 2;">
+            <svg class="w-4 h-4 text-[#616161]" 
+                 xmlns="http://www.w3.org/2000/svg" 
+                 viewBox="0 0 24 24" 
+                 fill="none" 
+                 stroke="currentColor" 
+                 stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input
+            type="text"
+            placeholder="Search..."
+            class="w-full pl-14 pr-4 py-3 border rounded-lg text-[14px] placeholder:text-[#616161] focus:outline-none focus:border-blue-500 transition-colors"
+            style="
+              min-width: 250px;
+              height: 40px;
+            "
+          />
+        </div>
+      
+        </div>
+      
+
+        <div style="
+        position: absolute;
+        left: 133px;
+        top: 301px;
+        width: auto;
+        height: auto;
+      ">
+          
+        <div class="relative flex items-center" style="
+          position: absolute;
+          left: 133px;
+          top: 301px;
+          bottom: auto;
+          width: auto;
+        ">
+          <div class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none" style="z-index: 2;">
+            <svg class="w-4 h-4 text-[#616161]" 
+                 xmlns="http://www.w3.org/2000/svg" 
+                 viewBox="0 0 24 24" 
+                 fill="none" 
+                 stroke="currentColor" 
+                 stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input
+            type="text"
+            placeholder="Search..."
+            class="w-full pl-14 pr-4 py-3 border rounded-lg text-[14px] placeholder:text-[#616161] focus:outline-none focus:border-blue-500 transition-colors"
+            style="
+              min-width: 250px;
+              height: 40px;
+            "
+          />
+        </div>
+      
+        </div>
+      
+      </div>
+    </body>
+    </html>
+  
